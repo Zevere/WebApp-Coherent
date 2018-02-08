@@ -30,7 +30,7 @@
 /connect.lock
 /coverage
 /libpeerconnection.log
-npm-debug.log
+npm-debug.log*
 testem.log
 /typings
 
@@ -41,3 +41,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+
+.idea
+.vscode
