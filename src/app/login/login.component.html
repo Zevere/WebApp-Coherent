@@ -1,41 +1,43 @@
 <div class="card text-center" style="border:0">
-  <!-- this works because in config/express.js we are serving static files from public/ -->
-  <div class="card-header bg-light">
-    <h1 style="font-size: 20vh;margin:0px;padding:0px;">
-      <img class="img-fluid" alt="Zevere Logo" src="../assets/zevere-squared.png" style="height:33vh;"> {{title}}
-    </h1>
-  </div>
-  <div>
-
-  </div>
-  <div class="card-body">
-    <h4 class="card-text">
-      Please log in to your account to proceed:
-    </h4>
-    <div class="col-md-6 offset-md-3" style="height: 35vh; ">
-      <form class="form-signin" style=" margin-top:10%;">
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input style="margin: 10px" type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input style="margin: 10px" type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-        <button style="margin: 10px" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <p style="margin: 20px -10px 10px 10px;text-align: center">
-          <a href="#">Forgot Password?</a>
-        </p>
-        <p style="margin: 20px -10px 10px 10px;text-align: center">
-          <a [routerLink]="['/home']">Proceed as Guest</a>
-        </p>
-      </form>
+    <!-- this works because in config/express.js we are serving static files from public/ -->
+    <div class="card-header bg-light">
+        <h1 style="font-size: 20vh;margin:0px;padding:0px;">
+            <img class="img-fluid" alt="Zevere Logo" src="../assets/zevere-squared.png" style="height:33vh;"> {{title}}
+        </h1>
     </div>
-    <div class="col-md-6 offset-md-3" style="text-align: center">
-      <p style="margin: 20px -10px 10px 10px;text-align: center">
-        <a href="#">Signup for an account</a>
-      </p>
-      <a href="#" style="margin: 10px;">Privacy policy</a>
-      <a href="#" style="margin: 10px;">Terms of use</a>
-    </div>
+    <div>
 
-  </div>
-  <!-- end card body div -->
+    </div>
+    <div class="card-body">
+        <h4 class="card-text">
+            Please log in to your account to proceed:
+        </h4>
+        <div class="col-md-6 offset-md-3" style="height: 35vh; ">
+            <form class="form-signin" style=" margin-top:10%;">
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input style="margin: 10px" type="email" id="inputEmail" class="form-control"
+                       placeholder="Email address" required="" autofocus="">
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input style="margin: 10px" type="password" id="inputPassword" class="form-control"
+                       placeholder="Password" required="">
+                <button style="margin: 10px" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                <p style="margin: 20px -10px 10px 10px;text-align: center">
+                    <a href="#">Forgot Password?</a>
+                </p>
+                <p style="margin: 20px -10px 10px 10px;text-align: center">
+                    <a [routerLink]="['/home']">Proceed as Guest</a>
+                </p>
+            </form>
+        </div>
+        <div class="col-md-6 offset-md-3" style="text-align: center">
+            <p style="margin: 20px -10px 10px 10px;text-align: center">
+                <a href="#">Signup for an account</a>
+            </p>
+            <a href="#" style="margin: 10px;">Privacy policy</a>
+            <a href="#" style="margin: 10px;">Terms of use</a>
+        </div>
+
+    </div>
+    <!-- end card body div -->
 </div>
 <!-- end card div -->
