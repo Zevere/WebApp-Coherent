@@ -42,3 +42,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Deployment Configurations
+/deploy/dist
+/deploy/docker-certs
+/deploy/docker-compose.config.json

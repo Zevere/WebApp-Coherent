@@ -1,0 +1,15 @@
+{
+  "name": "coherent-deploy-scripts",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "deploy": "node deploy-docker-compose.js",
+    "deploy:travis-ci": "node travis-ci/predeploy-staging.js && npm run deploy"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.3.1",
+    "shelljs": "^0.8.1"
+  }
+}
