@@ -1,44 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { AuthService } from './services/auth.service';
+import { HomeModule } from './modules/home/home.module';
+import { TaskListModule } from './modules/task-list/task-list.module';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { LoginComponent } from './components/login/login.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-
-const APP_ROUTES: Routes = [
-    {path: 'login', component: LoginComponent},
-    {path: 'home', component: HomeComponent},
-    {path: 'dashboard', component: DashboardComponent},
-    {path: '', redirectTo: 'home', pathMatch: 'full'},
-    {path: '**', component: NotFoundComponent}
-];
+import { getRoutes } from './routes';
 
 @NgModule({
     declarations: [
         AppComponent,
-        HomeComponent,
-        NavbarComponent,
-        LoginComponent,
-        NotFoundComponent,
-        DashboardComponent,
     ],
     imports: [
         BrowserModule,
-        RouterModule.forRoot(APP_ROUTES),
+        RouterModule.forRoot(getRoutes()),
         HttpClientModule,
         NgbModule.forRoot(),
-    ],
-    providers: [
-        AuthService
+        HomeModule,
+        TaskListModule,
     ],
     bootstrap: [
         AppComponent

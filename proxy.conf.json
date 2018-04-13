@@ -1,6 +1,6 @@
 {
-    "/zv": {
-        "target": "http://localhost:5000",
+    "/zv/graphql": {
+        "target": "http://borzoo.ga",
         "secure": false
     }
 }

@@ -21,11 +21,11 @@ export class AuthService {
     ) {
     }
 
-    observeUserLogin() {
+    watchLogin() {
         return fromEvent<User>(this._authEventEmitter, 'login');
     }
 
-    observeUserLogout() {
+    watchLogout() {
         return fromEvent(this._authEventEmitter, 'logout');
     }
 

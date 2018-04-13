@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { User } from '../../models/user';
+import { AuthService } from '../../../shared/services/auth.service';
+import { User } from '../../../shared/models/user';
 
 @Component({
     selector: 'app-navbar',
@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
 
     ngOnInit() {
         this._authService
-            .observeUserLogin()
+            .watchLogin()
             .subscribe(
                 user => {
                     this.profileLink = [`/students/view/${user.id}`];
@@ -30,7 +30,7 @@ export class NavbarComponent implements OnInit {
             );
 
         this._authService
-            .observeUserLogout()
+            .watchLogout()
             .subscribe(
                 () => {
                     this.user = null;
