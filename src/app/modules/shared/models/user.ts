@@ -1,6 +1,6 @@
 import { TaskList } from './task-list';
 
-export class User {
+export interface User {
     id: string;
     firstName: string;
     lastName?: string;

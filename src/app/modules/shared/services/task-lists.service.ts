@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { TaskList } from '../models/task-list';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
+import { from } from 'rxjs/observable/from';
+import { testTaskLists } from '../test-data';
 
 @Injectable()
 export class TaskListsService {
@@ -12,6 +14,9 @@ export class TaskListsService {
     }
 
     getTaskLists() {
+        return from([testTaskLists]);
+
+        /*
         return this._http
             .post(`/zv/graphql`, {
                 query: `{
@@ -32,6 +37,7 @@ export class TaskListsService {
             })
             .do(throwIfHasErrors)
             .map<any, TaskList[]>(res => res.data.user.lists);
+        */
     }
 }
 
