@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i [ngClass]="['fa', 'fa-' + icon]" *ngIf="icon?.length"></i>
+                        {{ taskList.title }}
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        <code>{{ taskList.id }}</code>
+                    </h6>
+                    <p class="card-text">
+                        {{ taskList.description }}
+                    </p>
+
+                    <div *ngIf="tags">
+                        <span *ngFor="let tag of tags">
+                            <span class="badge badge-light">{{ tag }}</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <app-comments-thread [comments]="taskList.comments" allowPost="true"></app-comments-thread>
+
+        </div>
+
+        <div class="col-md-3">
+            <!--ToDo: TaskList summary component-->
+            ToDo: TaskList summary component
+        </div>
+
+    </div>
+</div>

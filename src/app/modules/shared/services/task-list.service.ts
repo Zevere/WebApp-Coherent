@@ -7,13 +7,17 @@ import { from } from 'rxjs/observable/from';
 import { testTaskLists } from '../test-data';
 
 @Injectable()
-export class TaskListsService {
+export class TaskListService {
     constructor(
         private _http: HttpClient
     ) {
     }
 
-    getTaskLists() {
+    getTaskList(userId: string, listId: string) {
+        return from([testTaskLists[0]]);
+    }
+
+    getAllTaskLists(userId: string) {
         return from([testTaskLists]);
 
         /*

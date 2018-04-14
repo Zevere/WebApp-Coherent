@@ -1,0 +1,16 @@
+<ng-container *ngIf="comment">
+    <div class="card" style="margin: .3em auto;">
+        <div class="card-header">
+            <p>
+                <a [routerLink]="['/users', comment.authorId]">{{ comment.authorId }}</a>
+                posted at {{ comment.postedAt | date }}
+                <ng-container *ngIf="comment.modifiedAt">
+                    , {{ comment.status }} at {{ comment.modifiedAt | date }}
+                </ng-container>
+            </p>
+        </div>
+        <div class="card-body" *ngIf="comment.text?.length">
+            <p>{{ comment.text }}</p>
+        </div>
+    </div>
+</ng-container>

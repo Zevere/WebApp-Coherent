@@ -7,16 +7,14 @@ import { TaskList } from '../../../shared/models/task-list';
 })
 export class TaskListCardComponent implements OnInit {
     @Input() taskList: TaskList;
-
     icon: string;
-    tags?: string[];
-
+    tags: string[];
 
     ngOnInit(): void {
         this.parseTags();
     }
 
-    parseTags() {
+    private parseTags() {
         // ToDo iterate array once
 
         this.tags = this.taskList

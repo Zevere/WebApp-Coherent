@@ -16,6 +16,7 @@ const bobby = <User> {
 const schoolProject = <TaskList>{
     title: 'School Project',
     id: 'my-school-project',
+    ownerId: 'bobby',
     createdAt: new Date(),
     description: 'My school project for COMP 308 - Emerging Technology',
     tags: [`_kind:project`, `_icon:graduation-cap `],
@@ -23,13 +24,13 @@ const schoolProject = <TaskList>{
         <Comment>{
             id: 'asdfljdnvkjdhfg32q4',
             text: `I don't like to do this project :p`,
-            author: 'bobby',
+            authorId: 'bobby',
             postedAt: new Date(),
             status: 'edited',
         },
         {
             id: 'adfadsf',
-            author: 'alice0',
+            authorId: 'alice0',
             text: '',
             postedAt: new Date(),
             modifiedAt: new Date(),
@@ -38,10 +39,24 @@ const schoolProject = <TaskList>{
     ]
 };
 
+const chuckComment = <Comment> {
+    id: 'laksdnf7y',
+    postedAt: new Date(),
+    text: 'This is an edited comment',
+    authorId: 'chuck',
+    status: 'edited',
+    modifiedAt: new Date(),
+};
+
 bobby.lists = [schoolProject];
+schoolProject.comments.push(chuckComment);
 
 
 testUsers.push(bobby);
+testTaskLists.push(schoolProject);
+testTaskLists.push(schoolProject);
+testTaskLists.push(schoolProject);
+testTaskLists.push(schoolProject);
 testTaskLists.push(schoolProject);
 
 export { testUsers, testTaskLists };

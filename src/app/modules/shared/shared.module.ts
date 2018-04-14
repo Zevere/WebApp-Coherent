@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './services/auth.service';
-import { TaskListsService } from './services/task-lists.service';
+import { TaskListService } from './services/task-list.service';
 
 @NgModule({
     imports: [
@@ -10,8 +10,9 @@ import { TaskListsService } from './services/task-lists.service';
     declarations: [],
     providers: [
         AuthService,
-        TaskListsService
-    ]
+        TaskListService
+    ],
+    exports: []
 })
 export class SharedModule {
 }

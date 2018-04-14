@@ -10,6 +10,7 @@ import { TaskListModule } from './modules/task-list/task-list.module';
 
 import { AppComponent } from './app.component';
 import { getRoutes } from './routes';
+import { ProfileModule } from './modules/profile/profile.module';
 
 @NgModule({
     declarations: [
@@ -22,6 +23,7 @@ import { getRoutes } from './routes';
         NgbModule.forRoot(),
         HomeModule,
         TaskListModule,
+        ProfileModule,
     ],
     bootstrap: [
         AppComponent

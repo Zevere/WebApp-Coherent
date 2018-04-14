@@ -1,8 +1,10 @@
-<div class="card" style="width: 18rem;">
+<div class="card" style="margin: 0.3em;">
     <div class="card-body">
         <h5 class="card-title">
             <i [ngClass]="['fa', 'fa-' + icon]" *ngIf="icon?.length"></i>
-            {{ taskList.title }}
+            <a [routerLink]="['/users', taskList.ownerId, 'lists', taskList.id]">
+                {{ taskList.title }}
+            </a>
         </h5>
         <h6 class="card-subtitle mb-2 text-muted">
             <code>{{ taskList.id }}</code>
@@ -11,8 +13,7 @@
             {{ taskList.description }}
         </p>
 
-        <!--<a href="#" class="card-link">Card link</a>-->
-        <!--<a href="#" class="card-link">Another link</a>-->
+        <a class="card-link" [routerLink]="['/users', taskList.ownerId, 'lists', taskList.id]">See details</a>
 
         <div *ngIf="tags">
             <span *ngFor="let tag of tags">

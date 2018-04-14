@@ -1,12 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
 import { TaskListCardComponent } from './components/task-list-card/task-list-card.component';
-import { TaskListsComponent } from './components/task-lists/task-lists.component';
+import { AllTaskListsComponent } from './components/all-task-lists/all-task-lists.component';
+import { TaskListComponent } from './components/task-list/task-list.component';
+import { SharedModule } from '../shared/shared.module';
+import { CommentModule } from '../comment/comment.module';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
-  declarations: [TaskListCardComponent, TaskListsComponent]
+    imports: [
+        CommonModule,
+        RouterModule,
+        SharedModule,
+        CommentModule
+    ],
+    declarations: [
+        TaskListCardComponent,
+        AllTaskListsComponent,
+        TaskListComponent
+    ]
 })
-export class TaskListModule { }
+export class TaskListModule {
+}

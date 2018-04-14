@@ -1,0 +1,7 @@
+<div class="container" *ngIf="taskLists">
+    <div class="row">
+        <div class="col-md-5" *ngFor="let l of taskLists">
+            <app-task-list-card [taskList]="l"></app-task-list-card>
+        </div>
+    </div>
+</div>
