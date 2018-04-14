@@ -11,7 +11,6 @@ export class TaskListComponent implements OnInit {
 
     taskList: TaskList;
     icon: string;
-    tags: string[];
 
     constructor(
         private _taskListService: TaskListService,
@@ -45,12 +44,6 @@ export class TaskListComponent implements OnInit {
     }
 
     private parseTags() {
-        // ToDo iterate array once
-
-        this.tags = this.taskList
-            .tags
-            .map((t: string) => t.substr(t.indexOf(':') + 1));
-
         this.icon = this.taskList
             .tags
             .filter((t: string) => t.startsWith('_icon:'))

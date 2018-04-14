@@ -16,7 +16,8 @@ const bobby = <User> {
 const schoolProject = <TaskList>{
     title: 'School Project',
     id: 'my-school-project',
-    ownerId: 'bobby',
+    owner: 'bobby',
+    collaborators: ['alice0', 'chuck', 'dave.d2'],
     createdAt: new Date(),
     description: 'My school project for COMP 308 - Emerging Technology',
     tags: [`_kind:project`, `_icon:graduation-cap `],
