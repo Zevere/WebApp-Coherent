@@ -112,7 +112,7 @@ const taskProjectToDo0 = <TaskItem> {
     creator: 'bobby',
     createdAt: new Date(Date.now() - .5 * 86400000),
     assignees: ['chuck'],
-    tags: [`_stage:todo`, `_priority:high`, `_kind:bug`],
+    tags: [`_stage:todo`, `_priority:medium`, `_kind:bug`],
 };
 
 const taskProjectInProgress0 = <TaskItem> {
@@ -122,7 +122,7 @@ const taskProjectInProgress0 = <TaskItem> {
     creator: 'bobby',
     assignees: ['bobby', 'chuck'],
     createdAt: new Date(Date.now() - .5 * 86400000),
-    tags: [`_stage:in_progress`, `_priority:high`],
+    tags: [`_stage:in_progress`, `_priority:high`, '_progress:36'],
     comments: [
         <Comment>{
             id: 'lcfgkjuhb34ttrghdsf',
@@ -140,7 +140,7 @@ const taskProjectDone0 = <TaskItem> {
     id: 'make-schema',
     creator: 'dave.d2',
     createdAt: new Date(Date.now() - 12 * 86400000),
-    tags: [`_stage:done`, `_priority:high`],
+    tags: [`_stage:done`, `_priority:high`, '_progress:93'],
 };
 
 const taskProjectDone1 = <TaskItem> {
