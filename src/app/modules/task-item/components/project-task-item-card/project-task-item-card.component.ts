@@ -3,15 +3,17 @@ import { TaskItem } from '../../../shared/models/task-item';
 import { TaskItemTags } from '../../../shared/models/task-item-tags';
 
 @Component({
-    selector: 'app-task-item-card',
-    templateUrl: './task-item-card.component.html'
+    selector: 'app-project-task-item-card',
+    templateUrl: './project-task-item-card.component.html'
 })
-export class TaskItemCardComponent implements OnInit {
+export class ProjectTaskItemCardComponent implements OnInit {
     @Input() task: TaskItem;
     tags: TaskItemTags;
+
+    constructor() {
+    }
 
     ngOnInit() {
         this.tags = new TaskItemTags(this.task.tags);
     }
-
 }

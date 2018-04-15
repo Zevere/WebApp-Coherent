@@ -15,7 +15,8 @@ export class TaskListService {
     }
 
     getTaskList(userId: string, listId: string) {
-        return from([testTaskLists[0]]);
+        return from(testTaskLists.filter(list => list.id === listId && list.owner === userId))
+            .map(list => <TaskList>Object.assign({}, list));
     }
 
     getAllTaskLists(userId: string) {

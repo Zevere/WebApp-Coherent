@@ -1,0 +1,52 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>
+                <a [routerLink]="['/users', project.owner, 'lists', project.id]">
+                    <i [ngClass]="['fa', 'fa-' + projectTags.icon]" *ngIf="projectTags?.icon?.length"></i>
+                    {{ project.title }}
+                </a>
+                <!--ToDo: project progress component-->
+                <code>ToDo: project progress component</code>
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <h5 class="card-header text-center p-2 bg-dark text-light">Backlog</h5>
+                <div class="card-body">
+                    <app-project-task-item-card *ngFor="let t of backlogTasks" [task]="t"></app-project-task-item-card>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card">
+                <h5 class="card-header text-center p-2 bg-dark text-light">To Do</h5>
+                <div class="card-body">
+                    <app-project-task-item-card *ngFor="let t of todoTasks" [task]="t"></app-project-task-item-card>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card">
+                <h5 class="card-header text-center p-2 bg-dark text-light">In Progress</h5>
+                <div class="card-body">
+                    <app-project-task-item-card *ngFor="let t of inProgressTasks"
+                                                [task]="t"></app-project-task-item-card>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card">
+                <h5 class="card-header text-center p-2 bg-dark text-light">Done</h5>
+                <div class="card-body">
+                    <app-project-task-item-card *ngFor="let t of doneTasks" [task]="t"></app-project-task-item-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="card border-secondary" style="margin: .3em auto;">
+    <div class="card-body">
+        <h5 class="card-title">
+            <span>
+                <a class="btn btn-light btn-sm pull-right" [routerLink]="[task.id]" ngbTooltip="Edit Task">
+                    <i class="fa fa-pencil"></i>
+                </a>
+                {{ task.title }}
+            </span>
+        </h5>
+        <h6>
+            <span *ngIf="tags.priority" class="badge badge-light" ngbTooltip="Priority">{{ tags.priority }}</span>
+            <span *ngIf="tags.kind === 'bug'" class="badge badge-danger" ngbTooltip="Bug Report">
+                <i class="fa fa-bug"></i>
+            </span>
+            <span *ngIf="task.comments?.length" class="badge badge-success" ngbTooltip="Has Comments">
+                <i class="fa fa-comments"></i>
+            </span>
+        </h6>
+        <p class="card-text">{{ task.description }}</p>
+        <div>
+            <h6 class="card-subtitle mb-2 text-muted">
+                <ng-container *ngIf="task.assignees?.length; else createdBy">
+                    assigned to:
+                    <ul class="list-inline-item list-inline">
+                        <li class="list-inline-item" *ngFor="let userId of task.assignees">
+                            <a [routerLink]="['/users', userId]">{{ userId }}</a>
+                        </li>
+                    </ul>
+                </ng-container>
+                <ng-template #createdBy>
+                    created by <a [routerLink]="['/users', task.creator]">{{ task.creator }}</a>
+                </ng-template>
+            </h6>
+            <div *ngIf="tags.progress > 0">
+                <ngb-progressbar type="success" [value]="tags.progress" ngbTooltip="Progress"></ngb-progressbar>
+            </div>
+        </div>
+    </div>
+</div>

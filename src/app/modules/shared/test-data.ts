@@ -100,14 +100,16 @@ testTaskLists.push(listGroceries);
 const taskProjectBacklog0 = <TaskItem> {
     title: 'Use font awesome 5 for icons',
     id: 'cxvnuih4asdfgfghmjghr',
+    list: 'my-school-project',
     creator: 'chuck',
     createdAt: new Date(Date.now() - 80),
     tags: [`_stage:backlog`, `_priority:low`],
 };
 
 const taskProjectToDo0 = <TaskItem> {
-    id: 'cxvnuih4rsfdvb67576hn',
     title: 'Invalid username allowed on registration form',
+    id: 'cxvnuih4rsfdvb67576hn',
+    list: 'my-school-project',
     description: 'A "@" character is currently considered allowed for username field of registration form.',
     creator: 'bobby',
     createdAt: new Date(Date.now() - .5 * 86400000),
@@ -116,8 +118,9 @@ const taskProjectToDo0 = <TaskItem> {
 };
 
 const taskProjectInProgress0 = <TaskItem> {
-    id: 'cxvnuih4rsfdvb67576hn',
     title: 'User profile view',
+    id: 'cxvnuih4rsfdvb67576hn',
+    list: 'my-school-project',
     description: `It allows users to see their info and modify them. All client side validations should also be implemented.`,
     creator: 'bobby',
     assignees: ['bobby', 'chuck'],
@@ -136,8 +139,9 @@ const taskProjectInProgress0 = <TaskItem> {
 
 const taskProjectDone0 = <TaskItem> {
     title: 'Design MongoDb schema',
-    description: 'Models include User, TaskList and TaskItem',
     id: 'make-schema',
+    description: 'Models include User, TaskList and TaskItem',
+    list: 'my-school-project',
     creator: 'dave.d2',
     createdAt: new Date(Date.now() - 12 * 86400000),
     tags: [`_stage:done`, `_priority:high`, '_progress:93'],
@@ -146,6 +150,7 @@ const taskProjectDone0 = <TaskItem> {
 const taskProjectDone1 = <TaskItem> {
     title: 'Design home view',
     id: 'mbk5ih4rsfdvb67576hn',
+    list: 'my-school-project',
     description: 'Design landing page using bootstrap4 framework and HTML + CSS',
     creator: 'bobby',
     assignees: ['bobby', 'chuck'],
@@ -153,11 +158,14 @@ const taskProjectDone1 = <TaskItem> {
     tags: [`_stage:done`, `_priority:high`],
 };
 
+listProject.tasks = [
+    taskProjectBacklog0,
+    taskProjectToDo0,
+    taskProjectInProgress0,
+    taskProjectDone0,
+    taskProjectDone1,
+];
 
-testTaskItems.push(taskProjectBacklog0);
-testTaskItems.push(taskProjectToDo0);
-testTaskItems.push(taskProjectInProgress0);
-testTaskItems.push(taskProjectDone0);
-testTaskItems.push(taskProjectDone1);
+testTaskItems.push(...listProject.tasks);
 
 export { testUsers, testTaskLists, testTaskItems };

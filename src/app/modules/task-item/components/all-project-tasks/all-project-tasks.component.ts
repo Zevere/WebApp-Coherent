@@ -5,10 +5,10 @@ import { TaskListTags } from '../../../shared/models/task-list-tags';
 import { TaskItemTags } from '../../../shared/models/task-item-tags';
 
 @Component({
-    selector: 'app-project-tasks',
-    templateUrl: './project-tasks.component.html'
+    selector: 'app-all-project-tasks',
+    templateUrl: './all-project-tasks.component.html'
 })
-export class ProjectTasksComponent implements OnInit {
+export class AllProjectTasksComponent implements OnInit {
     @Input() project: TaskList;
     @Input() projectTags: TaskListTags;
     @Input() tasks: TaskItem[];

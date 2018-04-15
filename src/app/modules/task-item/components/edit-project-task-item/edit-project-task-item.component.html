@@ -1,0 +1,25 @@
+<form [formGroup]="taskItemFrom" (ngSubmit)="submit()">
+    <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" class="form-control" id="title" placeholder="Title of the task" formControlName="title">
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea class="form-control" id="description" rows="3" formControlName="description"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-outline-primary pull-right"
+            [disabled]="isWaitingForResponse || taskItemFrom.pristine || taskItemFrom.invalid">
+        <i class="fa fa-save"></i>
+        Save
+    </button>
+</form>
+
+<div class="row text-center">
+    <div class="alert alert-danger" *ngIf="error">
+        Operation Failed!
+        <br/>
+        <p> {{ error }} </p>
+    </div>
+</div>

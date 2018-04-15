@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import { from } from 'rxjs/observable/from';
-import { testTaskItems } from '../test-data';
+import { testTaskItems, testTaskLists } from '../test-data';
+import { TaskList } from '../models/task-list';
+import { TaskItem } from '../models/task-item';
 
 @Injectable()
 export class TaskItemService {
@@ -13,7 +15,8 @@ export class TaskItemService {
     }
 
     getTaskItem(userId: string, listId: string, taskId: string) {
-        return from([testTaskItems[0]]);
+        return from(testTaskItems.filter(task => task.id === taskId && task.list === listId))
+            .map(task => <TaskItem>Object.assign({}, task));
     }
 
     getAllTaskItems(userId: string, listId: string) {
