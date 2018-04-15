@@ -7,6 +7,8 @@ export interface TaskItem {
     title: string;
     createdAt: Date;
     description?: string;
+    updatedAt?: Date;
     tags?: string[];
+    assignees?: string[];
     comments?: Comment[];
 }
