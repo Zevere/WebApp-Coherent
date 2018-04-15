@@ -25,8 +25,33 @@
                 velit,
                 dignissim ut malesuada dignissim, placerat eu sapien. Ut cursus tellus sit amet eleifend fringilla.
             </p>
-            <h5>Comments:</h5>
-            <app-comments-thread [comments]="taskList.comments" allowPost="true"></app-comments-thread>
+
+            <ngb-tabset>
+                <ngb-tab>
+                    <ng-template ngbTabTitle>
+                        <i class="fa fa-comments text-success"></i> Comments
+                    </ng-template>
+                    <ng-template ngbTabContent>
+                        <app-comments-thread [comments]="taskList.comments" allowPost="true"></app-comments-thread>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab>
+                    <ng-template ngbTabTitle>
+                        <i class="fa fa-bell text-secondary"></i> Recent Activities
+                    </ng-template>
+                    <ng-template ngbTabContent>
+                        <p>
+                            <a href="#">bobby</a> commented on <a href="#">my-school-project</a> 2 minutes ago.
+                        </p>
+                        <p>
+                            <a href="#">alice0</a> updated task <a href="#"><em>Design home page</em></a> yesterday.
+                        </p>
+                        <p>
+                            <a href="#">bobby</a> added <a href="#">chuck</a> as a collaborator 2 days ago.
+                        </p>
+                    </ng-template>
+                </ngb-tab>
+            </ngb-tabset>
         </div>
 
         <div class="col-md-3">

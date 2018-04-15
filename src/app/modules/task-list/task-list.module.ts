@@ -8,11 +8,15 @@ import { TaskListComponent } from './components/task-list/task-list.component';
 import { SharedModule } from '../shared/shared.module';
 import { CommentModule } from '../comment/comment.module';
 import { TaskListSummaryComponent } from './components/task-list-summary/task-list-summary.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     imports: [
         CommonModule,
         RouterModule,
+
+        NgbModule.forRoot(),
+
         SharedModule,
         CommentModule
     ],

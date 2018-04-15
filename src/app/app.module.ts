@@ -3,8 +3,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { HomeModule } from './modules/home/home.module';
 import { TaskListModule } from './modules/task-list/task-list.module';
 
@@ -21,7 +19,6 @@ import { TaskItemModule } from './modules/task-item/task-item.module';
         BrowserModule,
         RouterModule.forRoot(getRoutes()),
         HttpClientModule,
-        NgbModule.forRoot(),
         HomeModule,
         ProfileModule,
         TaskListModule,
