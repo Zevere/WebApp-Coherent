@@ -1,6 +1,10 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-auto">
+        <div class="col-md-12">
+            <a class="btn btn-primary pull-right" [routerLink]="['tasks']">
+                <i class="fa fa-tasks"></i>
+                See tasks
+            </a>
             <h2>
                 <i [ngClass]="['fa', 'fa-' + icon]" *ngIf="icon?.length"></i>
                 {{ taskList.title }}

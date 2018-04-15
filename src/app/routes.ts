@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+
 import { LoginComponent } from './modules/home/components/login/login.component';
 import { DashboardComponent } from './modules/home/components/dashboard/dashboard.component';
 import { HomeComponent } from './modules/home/components/home/home.component';
@@ -6,6 +7,8 @@ import { NotFoundComponent } from './modules/home/components/not-found/not-found
 import { AllTaskListsComponent } from './modules/task-list/components/all-task-lists/all-task-lists.component';
 import { TaskListComponent } from './modules/task-list/components/task-list/task-list.component';
 import { UserProfileComponent } from './modules/profile/components/user-profile/user-profile.component';
+import { AllTaskItemsComponent } from './modules/task-item/components/all-task-items/all-task-items.component';
+import { TaskItemComponent } from './modules/task-item/components/task-item/task-item.component';
 
 export function getRoutes(): Routes {
     return [
@@ -13,12 +16,26 @@ export function getRoutes(): Routes {
         {path: 'home', component: HomeComponent},
         {path: 'dashboard', component: DashboardComponent},
         {path: 'my-lists', component: AllTaskListsComponent},
-        {path: 'users/:userId', component: UserProfileComponent},
         {
-            path: 'users/:userId/lists', children: [
-                {path: ':listId', component: TaskListComponent},
-                {path: '', component: AllTaskListsComponent},
-            ]
+            path: 'users/:userId', children: [
+                {path: '', component: UserProfileComponent, pathMatch: 'full'},
+                {
+                    path: 'lists', children: [
+                        {path: '', component: AllTaskListsComponent, pathMatch: 'full'},
+                        {
+                            path: ':listId', children: [
+                                {path: '', component: TaskListComponent, pathMatch: 'full'},
+                                {
+                                    path: 'tasks', children: [
+                                        {path: '', component: AllTaskItemsComponent, pathMatch: 'full'},
+                                        {path: ':taskId', component: TaskItemComponent},
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
         },
         {path: '', redirectTo: 'home', pathMatch: 'full'},
         {path: '**', component: NotFoundComponent}
