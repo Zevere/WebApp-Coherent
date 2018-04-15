@@ -1,25 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { TaskList } from '../models/task-list';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import { from } from 'rxjs/observable/from';
-import { testTaskLists } from '../test-data';
-import { TaskListTags } from '../models/task-list-tags';
+import { testTaskItems } from '../test-data';
 
 @Injectable()
-export class TaskListService {
+export class TaskItemService {
     constructor(
         private _http: HttpClient
     ) {
     }
 
-    getTaskList(userId: string, listId: string) {
-        return from([testTaskLists[0]]);
+    getTaskItem(userId: string, listId: string, taskId: string) {
+        return from([testTaskItems[0]]);
     }
 
-    getAllTaskLists(userId: string) {
-        return from([testTaskLists]);
+    getAllTaskItems(userId: string, listId: string) {
+        return from([testTaskItems]);
 
         /*
         return this._http

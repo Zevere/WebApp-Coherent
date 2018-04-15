@@ -11,4 +11,5 @@ export interface TaskList {
     comments?: Comment[];
     tags?: string[];
     tasks?: TaskItem[];
+    updatedAt?: Date;
 }

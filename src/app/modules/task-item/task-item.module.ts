@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 
 import { AllTaskItemsComponent } from './components/all-task-items/all-task-items.component';
 import { TaskItemComponent } from './components/task-item/task-item.component';
+import { ProjectTasksComponent } from './components/project-tasks/project-tasks.component';
+import { TaskItemCardComponent } from './components/task-item-card/task-item-card.component';
 
 @NgModule({
     imports: [
@@ -13,6 +15,8 @@ import { TaskItemComponent } from './components/task-item/task-item.component';
     declarations: [
         AllTaskItemsComponent,
         TaskItemComponent,
+        ProjectTasksComponent,
+        TaskItemCardComponent,
     ],
     exports: [
         AllTaskItemsComponent,

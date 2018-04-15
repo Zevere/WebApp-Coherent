@@ -1,7 +1,12 @@
+import { Comment } from './comment';
+
 export interface TaskItem {
     id: string;
+    creator: string;
+    list: string;
     title: string;
-    description?: string;
     createdAt: Date;
-    tasks?: any[];
+    description?: string;
+    tags?: string[];
+    comments?: Comment[];
 }

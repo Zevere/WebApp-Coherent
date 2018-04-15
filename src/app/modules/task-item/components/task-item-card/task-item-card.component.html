@@ -1,0 +1,21 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ task.title }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+            created by
+            <a [routerLink]="['/users', task.creator]">{{ task.creator }}</a>
+            at {{ task.createdAt | date }}
+        </h6>
+        <p class="card-text">{{ task.description }}</p>
+        <div>
+            <span *ngIf="task.comments?.length">
+                <i class="fa fa-comments"></i>
+                {{ task.comments.length }} comments
+            </span>
+        </div>
+        <div class="pull-right">
+            <button type="button" class="btn btn-outline-primary"><i class="fa fa-pencil"></i></button>
+            <button type="button" class="btn btn-outline-danger"><i class="fa fa-trash"></i></button>
+        </div>
+    </div>
+</div>

@@ -1,3 +1,2 @@
-<p>
-    all-task-items works!
-</p>
+<app-project-tasks *ngIf="taskListTags?.kind === 'project'"
+                   [project]="taskList" [tasks]="taskItems" [projectTags]="taskListTags"></app-project-tasks>
