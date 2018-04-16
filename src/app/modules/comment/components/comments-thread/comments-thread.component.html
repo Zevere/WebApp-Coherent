@@ -1,21 +1,14 @@
 <app-comment [comment]="c" *ngFor="let c of comments"></app-comment>
+<hr>
 
 <div *ngIf="allowPost">
-    <!--ToDo: post new comment here-->
-    <code>ToDo: post new comment here</code>
-
-    <div class="card" style="margin: .3em auto;">
-        <div class="card-header">
-            <p>Post a comment</p>
+    <form>
+        <div class="form-group">
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                          placeholder="Post a new comment..."></textarea>
         </div>
-        <form class="card-body">
-            <div class="form-group">
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
-            <div>
-                <button type="submit" class="btn btn-success pull-right">Submit</button>
-            </div>
-        </form>
-    </div>
-
+        <div>
+            <button type="submit" class="btn btn-success pull-right">Post</button>
+        </div>
+    </form>
 </div>

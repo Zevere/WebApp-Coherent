@@ -108,7 +108,7 @@ const taskProjectBacklog0 = <TaskItem> {
 
 const taskProjectToDo0 = <TaskItem> {
     title: 'Invalid username allowed on registration form',
-    id: 'cxvnuih4rsfdvb67576hn',
+    id: 'dfgfvbncxvnuih4rsfdvb',
     list: 'my-school-project',
     description: 'A "@" character is currently considered allowed for username field of registration form.',
     creator: 'bobby',
@@ -119,7 +119,7 @@ const taskProjectToDo0 = <TaskItem> {
 
 const taskProjectInProgress0 = <TaskItem> {
     title: 'User profile view',
-    id: 'cxvnuih4rsfdvb67576hn',
+    id: 'cxvnuih4rsfdvb67576sdc',
     list: 'my-school-project',
     description: `It allows users to see their info and modify them. All client side validations should also be implemented.`,
     creator: 'bobby',

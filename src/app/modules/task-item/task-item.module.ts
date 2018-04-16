@@ -10,13 +10,16 @@ import { TaskItemComponent } from './components/task-item/task-item.component';
 import { AllProjectTasksComponent } from './components/all-project-tasks/all-project-tasks.component';
 import { ProjectTaskItemCardComponent } from './components/project-task-item-card/project-task-item-card.component';
 import { EditProjectTaskItemComponent } from './components/edit-project-task-item/edit-project-task-item.component';
+import { CommentModule } from '../comment/comment.module';
+import { TaskItemSummaryComponent } from './components/task-item-summary/task-item-summary.component';
 
 @NgModule({
     imports: [
         CommonModule,
         RouterModule,
         ReactiveFormsModule,
-        NgbModule
+        NgbModule,
+        CommentModule,
     ],
     declarations: [
         AllTaskItemsComponent,
@@ -24,6 +27,7 @@ import { EditProjectTaskItemComponent } from './components/edit-project-task-ite
         AllProjectTasksComponent,
         ProjectTaskItemCardComponent,
         EditProjectTaskItemComponent,
+        TaskItemSummaryComponent,
     ],
     exports: [
         AllTaskItemsComponent,
