@@ -3,6 +3,7 @@ import { TaskList } from '../../../shared/models/task-list';
 import { TaskItem } from '../../../shared/models/task-item';
 import { TaskListTags } from '../../../shared/models/task-list-tags';
 import { TaskItemTags } from '../../../shared/models/task-item-tags';
+import { toPrettyFloat } from '../../../shared/helpers/number-helpers';
 
 @Component({
     selector: 'app-all-project-tasks',
@@ -17,12 +18,15 @@ export class AllProjectTasksComponent implements OnInit {
     todoTasks: TaskItem[];
     inProgressTasks: TaskItem[];
     doneTasks: TaskItem[];
-
-    constructor() {
-    }
+    progress: {
+        todo: string,
+        inProgress: string,
+        done: string,
+    };
 
     ngOnInit() {
         this.assignTaskKinds();
+        this.calculateProgress();
     }
 
     private assignTaskKinds() {
@@ -39,5 +43,15 @@ export class AllProjectTasksComponent implements OnInit {
         this.todoTasks = getTasksInStage('todo');
         this.inProgressTasks = getTasksInStage('in_progress');
         this.doneTasks = getTasksInStage('done');
+    }
+
+    private calculateProgress() {
+        const totalTasks = this.todoTasks.length + this.inProgressTasks.length + this.doneTasks.length;
+
+        this.progress = {
+            todo: toPrettyFloat(this.todoTasks.length / totalTasks * 100),
+            inProgress: toPrettyFloat(this.inProgressTasks.length / totalTasks * 100),
+            done: toPrettyFloat(this.doneTasks.length / totalTasks * 100),
+        };
     }
 }

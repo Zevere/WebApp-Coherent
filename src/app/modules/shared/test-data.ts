@@ -137,6 +137,16 @@ const taskProjectInProgress0 = <TaskItem> {
     ]
 };
 
+const taskProjectInProgress1 = <TaskItem> {
+    title: 'Create indexes on unique model fields',
+    id: 'dfghyjio5jdvb67576756d',
+    list: 'my-school-project',
+    creator: 'dave.d2',
+    createdAt: new Date(Date.now() - 2 * 86400000),
+    tags: [`_stage:in_progress`, `_priority:low`],
+};
+
+
 const taskProjectDone0 = <TaskItem> {
     title: 'Design MongoDb schema',
     id: 'make-schema',
@@ -162,6 +172,7 @@ listProject.tasks = [
     taskProjectBacklog0,
     taskProjectToDo0,
     taskProjectInProgress0,
+    taskProjectInProgress1,
     taskProjectDone0,
     taskProjectDone1,
 ];
