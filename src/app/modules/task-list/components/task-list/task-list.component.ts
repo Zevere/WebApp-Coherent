@@ -2,17 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskListService } from '../../../shared/services/task-list.service';
 import { TaskList } from '../../../shared/models/task-list';
+import { AuthService } from '../../../shared/services/auth.service';
 
 @Component({
     selector: 'app-task-list',
     templateUrl: './task-list.component.html'
 })
 export class TaskListComponent implements OnInit {
-
     taskList: TaskList;
+    isCurrentUserOwner: boolean;
     icon: string;
 
     constructor(
+        private _authService: AuthService,
         private _taskListService: TaskListService,
         private _router: Router,
         private _activatedRoute: ActivatedRoute
@@ -36,6 +38,7 @@ export class TaskListComponent implements OnInit {
                 taskList => {
                     this.taskList = taskList;
                     this.parseTags();
+                    this.isCurrentUserOwner = this._authService.user.id === this.taskList.owner;
                 },
                 e => {
                     console.warn(e);

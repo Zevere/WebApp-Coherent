@@ -52,7 +52,7 @@ const listProject = <TaskList>{
     title: 'COMP 308 Project',
     id: 'my-school-project',
     owner: 'bobby',
-    collaborators: ['chuck', 'dave.d2'],
+    collaborators: ['chuck_chw', 'dave.d2'],
     createdAt: new Date(Date.now() - 15 * 86400000),
     description: 'My school project for COMP 308 - Emerging Technology',
     tags: [`_kind:project`, `_icon:graduation-cap`],
@@ -74,7 +74,7 @@ const listProject = <TaskList>{
         {
             id: 'vlcimhbu4578asdf4',
             text: `Good job team! we are almost done`,
-            authorId: 'chuck',
+            authorId: 'chuck_chw',
             postedAt: new Date(Date.now() - 3 * 60000),
             status: 'posted'
         },
@@ -101,7 +101,7 @@ const taskProjectBacklog0 = <TaskItem> {
     title: 'Use font awesome 5 for icons',
     id: 'cxvnuih4asdfgfghmjghr',
     list: 'my-school-project',
-    creator: 'chuck',
+    creator: 'chuck_chw',
     createdAt: new Date(Date.now() - 80),
     tags: [`_stage:backlog`, `_priority:low`],
 };
@@ -113,7 +113,7 @@ const taskProjectToDo0 = <TaskItem> {
     description: 'A "@" character is currently considered allowed for username field of registration form.',
     creator: 'bobby',
     createdAt: new Date(Date.now() - .5 * 86400000),
-    assignees: ['chuck'],
+    assignees: ['chuck_chw'],
     tags: [`_stage:todo`, `_priority:medium`, `_kind:bug`],
 };
 
@@ -123,13 +123,13 @@ const taskProjectInProgress0 = <TaskItem> {
     list: 'my-school-project',
     description: `It allows users to see their info and modify them. All client side validations should also be implemented.`,
     creator: 'bobby',
-    assignees: ['bobby', 'chuck'],
+    assignees: ['bobby', 'chuck_chw'],
     createdAt: new Date(Date.now() - .5 * 86400000),
     tags: [`_stage:in_progress`, `_priority:high`, '_progress:36'],
     comments: [
         <Comment>{
             id: 'lcfgkjuhb34ttrghdsf',
-            authorId: 'chuck',
+            authorId: 'chuck_chw',
             text: 'We could break this into two tasks: show and modify.',
             postedAt: new Date(Date.now() - 3600000),
             status: 'posted',
@@ -163,7 +163,7 @@ const taskProjectDone1 = <TaskItem> {
     list: 'my-school-project',
     description: 'Design landing page using bootstrap4 framework and HTML + CSS',
     creator: 'bobby',
-    assignees: ['bobby', 'chuck'],
+    assignees: ['bobby', 'chuck_chw'],
     createdAt: new Date(Date.now() - 11.3 * 86400000),
     tags: [`_stage:done`, `_priority:high`],
 };

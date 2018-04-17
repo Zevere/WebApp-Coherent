@@ -9,11 +9,13 @@ import { SharedModule } from '../shared/shared.module';
 import { CommentModule } from '../comment/comment.module';
 import { TaskListSummaryComponent } from './components/task-list-summary/task-list-summary.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
         CommonModule,
         RouterModule,
+        FormsModule,
 
         NgbModule.forRoot(),
 

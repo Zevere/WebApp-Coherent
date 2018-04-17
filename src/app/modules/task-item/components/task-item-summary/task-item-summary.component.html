@@ -1,8 +1,7 @@
 <div>
     <h6>
-        Created by:
+        Created by
         <a [routerLink]="['/users/', taskItem.creator]">{{ taskItem.creator }}</a>
-        at {{ taskItem.createdAt | date }}
     </h6>
 </div>
 <hr>
@@ -21,5 +20,6 @@
 </div>
 <hr>
 
-<h6 *ngIf="taskItem.updatedAt">Last Updated at {{ taskItem.updatedAt | date }}</h6>
+<h6>Created at {{ taskItem.createdAt | date:'EEEE, MMM d, y, h:mm a' }}</h6>
+<h6 *ngIf="taskItem.updatedAt">Last Updated at {{ taskItem.updatedAt | date:'EEEE, MMM d, y, h:mm a' }}</h6>
 

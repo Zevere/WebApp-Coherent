@@ -4,6 +4,7 @@ import { EventEmitter } from 'events';
 import { fromEvent } from 'rxjs/observable/fromEvent';
 import 'rxjs/add/operator/do';
 import { User } from '../models/user';
+import { testUsers } from '../test-data';
 
 @Injectable()
 export class AuthService {
@@ -19,6 +20,7 @@ export class AuthService {
     constructor(
         private _http: HttpClient
     ) {
+        this._currentUser = testUsers[1];
     }
 
     watchLogin() {
