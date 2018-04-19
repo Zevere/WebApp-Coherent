@@ -23,7 +23,11 @@ export class TaskItemTags {
     progress: number;
     priority: string;
 
-    constructor(tags: string[]) {
+    constructor(tags: string[] | null) {
+        if (!(tags && tags.length)) {
+            return;
+        }
+
         this.kind = getTagValue(tags, '_kind');
         this.stage = getTagValue(tags, '_stage');
         this.progress = +getTagValue(tags, '_progress');
@@ -40,6 +44,23 @@ export class TaskItemTags {
 
     public static getUserTags(task: TaskItem) {
         return task.tags.filter(tag => !tag.startsWith('_'));
+    }
+
+    public toTagsArray(): string[] {
+        const tags = [];
+
+        function addIfHasValue(key: string, value: string) {
+            if (value && value.length) {
+                tags.push(`${key}:${value}`);
+            }
+        }
+
+        addIfHasValue('_kind', this.kind);
+        addIfHasValue('_stage', this.stage);
+        addIfHasValue('_progress', this.progress + '');
+        addIfHasValue('_priority', this.priority);
+
+        return tags;
     }
 }
 

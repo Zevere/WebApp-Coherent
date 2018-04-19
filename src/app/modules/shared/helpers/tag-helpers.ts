@@ -1,4 +1,7 @@
 export function getTagValue(tags: string[], name: string) {
+    if (!tags || !tags.length) {
+        return null;
+    }
     return tags
         .filter(t => t.startsWith(name))
         .map(getValue(name))

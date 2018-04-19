@@ -84,16 +84,14 @@ const listProject = <TaskList>{
 const listGroceries = <TaskList>{
     title: 'Groceries @ Food Basics',
     id: 'groceries',
-    owner: 'alice0',
-    createdAt: new Date(Date.now() - 86400000),
+    owner: 'bobby',
+    createdAt: new Date(Date.now() - 2 * 86400000),
     tags: [`_kind:todo`, `_icon:shopping-basket`],
 };
 
-userAlice.lists = [listGroceries];
-userBobby.lists = [listProject];
+userBobby.lists = [listProject, listGroceries];
 
-testTaskLists.push(listProject);
-testTaskLists.push(listGroceries);
+testTaskLists.push(listProject, listGroceries);
 
 // TEST TASK ITEMS
 
@@ -177,6 +175,59 @@ listProject.tasks = [
     taskProjectDone1,
 ];
 
-testTaskItems.push(...listProject.tasks);
+const taskToDo0 = <TaskItem> {
+    title: 'Apples',
+    id: 'xcvndfd2mbk5ih4rsfdvb67576hn',
+    list: 'groceries',
+    creator: 'bobby',
+    createdAt: new Date(Date.now() - 1.9 * 86400000),
+};
+
+const taskToDo1 = <TaskItem> {
+    title: 'Bananas',
+    description: `Try to get a few red ones too`,
+    id: '3fdlkghdfjngxcvndfd2mbk5ih4rsf',
+    list: 'groceries',
+    creator: 'bobby',
+    createdAt: new Date(Date.now() - 1.2 * 86400000),
+};
+
+const taskToDo2 = <TaskItem> {
+    title: 'Carrots',
+    id: 'c3fdlkghdfjngxcvndfd2bgf7685665',
+    list: 'groceries',
+    creator: 'bobby',
+    createdAt: new Date(Date.now() - 1.1 * 86400000),
+    tags: ['_stage:done']
+};
+
+const taskToDo3 = <TaskItem> {
+    title: 'Dish Soap',
+    id: 'fvgdfblkj45xcvndfd2mbk5i454',
+    list: 'groceries',
+    creator: 'bobby',
+    createdAt: new Date(Date.now() - 1.1 * 86400000),
+};
+
+const taskToDo4 = <TaskItem> {
+    title: 'Eggs',
+    description: '2 boxes of large eggs',
+    id: '567bvnbv5xcvndfd2c',
+    list: 'groceries',
+    creator: 'bobby',
+    createdAt: new Date(Date.now() - .8 * 86400000),
+    tags: ['_stage:done']
+};
+
+listGroceries.tasks = [
+    taskToDo0,
+    taskToDo1,
+    taskToDo2,
+    taskToDo3,
+    taskToDo4,
+];
+
+
+testTaskItems.push(...listProject.tasks, ...listGroceries.tasks);
 
 export { testUsers, testTaskLists, testTaskItems };

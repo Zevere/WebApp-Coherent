@@ -28,30 +28,14 @@ export class TaskItemService {
     }
 
     getAllTaskItems(userId: string, listId: string) {
-        return from([testTaskItems]);
-
-        /*
-        return this._http
-            .post(`/zv/graphql`, {
-                query: `{
-                  user(userId: "bobby") {
-                    lists {
-                      id title createdAt
-                      tasks {
-                          id
-                          title
-                          description
-                          due
-                          projectTags
-                          createdAt
-                      }
-                    }
-                  }
-                }`
-            })
-            .do(throwIfHasErrors)
-            .map<any, TaskList[]>(res => res.data.user.lists);
-        */
+        return from([
+            testTaskItems
+                .filter(task => task.list === listId)
+                .reduce<TaskItem[]>((prev: TaskItem[], curr: TaskItem) => {
+                    prev.push(Object.assign({}, curr));
+                    return prev;
+                }, [])
+        ]);
     }
 
     update(taskUpdates: TaskItem) {
@@ -63,11 +47,12 @@ export class TaskItemService {
         actualTask.updatedAt = new Date();
 
         const tagUpdates = new TaskItemTags(taskUpdates.tags || []);
+        actualTask.tags = actualTask.tags || [];
         if (actualTags.stage !== tagUpdates.stage) {
             actualTask.tags = actualTask.tags.filter((tag: string) => !tag.startsWith('_stage:'));
             actualTask.tags.push(`_stage:${tagUpdates.stage}`);
         }
-        return from([actualTask]);
+        return from([Object.assign({}, actualTask)]);
     }
 }
 

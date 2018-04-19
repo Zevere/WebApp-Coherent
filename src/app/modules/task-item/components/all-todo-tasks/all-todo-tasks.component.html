@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-auto">
+            <a class="btn btn-light align-top" [routerLink]="['/users', taskList.owner, 'lists', taskList.id]">
+                <i [ngClass]="['fa', 'fa-' + taskListTags.icon]" *ngIf="taskListTags?.icon?.length"></i>
+                <span>{{ taskList.title }}</span>
+            </a>
+        </div>
+        <div class="col-md-3 col-md-auto">
+            <div *ngIf="progress" class="progress" [ngbTooltip]="'Done: ' + progress + '%'">
+                <div class="progress-bar bg-success" role="progressbar" [style.width]="progress + '%'"
+                     aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <ul *ngFor="let task of taskItems" class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <app-todo-task-item-card [task]="task"
+                                                 (taskUpdated)="updateTaskItem($event)"></app-todo-task-item-card>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

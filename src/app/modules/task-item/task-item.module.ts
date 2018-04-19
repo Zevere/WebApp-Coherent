@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -12,11 +12,14 @@ import { ProjectTaskItemCardComponent } from './components/project-task-item-car
 import { EditProjectTaskItemComponent } from './components/edit-project-task-item/edit-project-task-item.component';
 import { CommentModule } from '../comment/comment.module';
 import { TaskItemSummaryComponent } from './components/task-item-summary/task-item-summary.component';
+import { AllTodoTasksComponent } from './components/all-todo-tasks/all-todo-tasks.component';
+import { TodoTaskItemCardComponent } from './components/todo-task-item-card/todo-task-item-card.component';
 
 @NgModule({
     imports: [
         CommonModule,
         RouterModule,
+        FormsModule,
         ReactiveFormsModule,
         NgbModule,
         CommentModule,
@@ -28,6 +31,8 @@ import { TaskItemSummaryComponent } from './components/task-item-summary/task-it
         ProjectTaskItemCardComponent,
         EditProjectTaskItemComponent,
         TaskItemSummaryComponent,
+        AllTodoTasksComponent,
+        TodoTaskItemCardComponent,
     ],
     exports: [
         AllTaskItemsComponent,

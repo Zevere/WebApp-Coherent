@@ -1,2 +1,5 @@
 <app-all-project-tasks *ngIf="taskListTags?.kind === 'project'"
                        [project]="taskList" [tasks]="taskItems" [projectTags]="taskListTags"></app-all-project-tasks>
+
+<app-all-todo-tasks *ngIf="!taskListTags.kind || taskListTags.kind === 'todo'"
+                    [taskList]="taskList" [taskItems]="taskItems" [taskListTags]="taskListTags"></app-all-todo-tasks>

@@ -1,0 +1,15 @@
+<dl>
+    <dt>
+        <form #taskStageForm="ngForm">
+            <div class="form-check form-check-inline">
+                <input type="checkbox" class="form-check-input" [id]="'stage_'+task.id"
+                       ngbTooltip="Check the box if it's done"
+                       (change)="updateStage(taskStageForm)" name="stage" [(ngModel)]="isDone">
+                <label class="form-check-label" [for]="'stage_'+task.id">
+                    <h5>{{ task.title }}</h5>
+                </label>
+            </div>
+        </form>
+    </dt>
+    <dd>{{ task.description }}</dd>
+</dl>
