@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TaskList } from '../../../shared/models/task-list';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/concatMap';
+import { Observable } from 'rxjs';
+
+
 import { UserService } from '../../../shared/services/user.service';
 import { User } from '../../../shared/models/user';
 import { NgForm } from '@angular/forms';

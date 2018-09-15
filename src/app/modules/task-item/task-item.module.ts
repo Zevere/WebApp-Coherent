@@ -14,6 +14,7 @@ import { CommentModule } from '../comment/comment.module';
 import { TaskItemSummaryComponent } from './components/task-item-summary/task-item-summary.component';
 import { AllTodoTasksComponent } from './components/all-todo-tasks/all-todo-tasks.component';
 import { TodoTaskItemCardComponent } from './components/todo-task-item-card/todo-task-item-card.component';
+import { AddTodoTaskItemComponent } from './components/add-todo-task-item/add-todo-task-item.component';
 
 @NgModule({
     imports: [
@@ -33,6 +34,7 @@ import { TodoTaskItemCardComponent } from './components/todo-task-item-card/todo
         TaskItemSummaryComponent,
         AllTodoTasksComponent,
         TodoTaskItemCardComponent,
+        AddTodoTaskItemComponent,
     ],
     exports: [
         AllTaskItemsComponent,

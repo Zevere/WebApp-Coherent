@@ -86,7 +86,7 @@ const listGroceries = <TaskList>{
     id: 'groceries',
     owner: 'bobby',
     createdAt: new Date(Date.now() - 2 * 86400000),
-    tags: [`_kind:todo`, `_icon:shopping-basket`],
+    tags: [`_icon:shopping-basket`],
 };
 
 userBobby.lists = [listProject, listGroceries];
@@ -219,12 +219,21 @@ const taskToDo4 = <TaskItem> {
     tags: ['_stage:done']
 };
 
+const taskToDo5 = <TaskItem> {
+    title: 'Figs',
+    id: 'dv43567bvnbv5xcvndvcbf',
+    list: 'groceries',
+    creator: 'bobby',
+    createdAt: new Date(Date.now() - .4 * 86400000),
+};
+
 listGroceries.tasks = [
     taskToDo0,
     taskToDo1,
     taskToDo2,
     taskToDo3,
     taskToDo4,
+    taskToDo5,
 ];
 
 

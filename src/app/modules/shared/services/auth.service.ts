@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter } from 'events';
-import { fromEvent } from 'rxjs/observable/fromEvent';
-import 'rxjs/add/operator/do';
+import { fromEvent } from 'rxjs';
+
 import { User } from '../models/user';
 import { testUsers } from '../test-data';
 

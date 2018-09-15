@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/map';
-import { from } from 'rxjs/observable/from';
+
+
+import { from } from 'rxjs';
 import { testTaskItems, testTaskLists } from '../test-data';
 import { TaskList } from '../models/task-list';
 import { TaskItem } from '../models/task-item';
