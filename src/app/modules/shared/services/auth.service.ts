@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter } from 'events';
 import { fromEvent } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import { User } from '../models/user';
 import { testUsers } from '../test-data';
@@ -39,18 +40,22 @@ export class AuthService {
     login(login: { username: string, password: string }) {
         return this._http
             .post<User>('/api/login', login)
-            .do(user => {
-                this._currentUser = user;
-                this._authEventEmitter.emit('login', user);
-            });
+            .pipe(
+                tap(user => {
+                    this._currentUser = user;
+                    this._authEventEmitter.emit('login', user);
+                })
+            );
     }
 
     logout() {
         return this._http
             .post('/api/logout', null)
-            .do(() => {
-                this._authEventEmitter.emit('logout');
-                this._currentUser = null;
-            });
+            .pipe(
+                tap(() => {
+                    this._authEventEmitter.emit('logout');
+                    this._currentUser = null;
+                })
+            );
     }
 }

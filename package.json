@@ -1,11 +1,11 @@
 {
     "name": "coherent",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "license": "MIT",
     "scripts": {
         "ng": "node \"node_modules/@angular/cli/bin/ng\"",
         "start": "npm run ng -- serve --proxy-config proxy.conf.json",
-        "build": "npm run ng -- build --prod --output-path deploy/dist/public",
+        "build": "npm run ng -- build --prod --extract-css",
         "test": "npm run ng -- test",
         "lint": "npm run ng -- lint",
         "e2e": "npm run ng -- e2e"
@@ -21,7 +21,7 @@
         "@angular/platform-browser": "6.1.7",
         "@angular/platform-browser-dynamic": "6.1.7",
         "@angular/router": "6.1.7",
-        "@ng-bootstrap/ng-bootstrap": "^1.1.2",
+        "@ng-bootstrap/ng-bootstrap": "^3.2.0",
         "bootstrap": "^4.1.3",
         "core-js": "^2.5.7",
         "font-awesome": "^4.7.0",

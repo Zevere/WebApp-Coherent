@@ -5,31 +5,33 @@ services:
   - docker
 language: node_js
 node_js:
-  - "7"
+  - node
+branches:
+  except:
+    - gh-pages
+notifications:
+  email:
+    on_success: never
+    on_failure: always
+
 cache:
   directories:
-    - "node_modules"
-install:
-  - cd "$TRAVIS_BUILD_DIR"
-  - npm install
-  - cd "$TRAVIS_BUILD_DIR/deploy"
-  - npm install
+    - node_modules
+
 script:
-  - cd "$TRAVIS_BUILD_DIR"
-  - npm run build
+  - export repo_name=$(echo $TRAVIS_REPO_SLUG | cut -d"/" -f2)
+  - npm run build $([ "$TRAVIS_BRANCH" = 'master' ] && echo -- --base-href=/${repo_name}/)
+
 deploy:
-  provider: script
-  script: cd "$TRAVIS_BUILD_DIR/deploy" && npm run "deploy:travis-ci"
-  skip_cleanup: true
+  provider: pages
+  local-dir: dist
+  skip-cleanup: true
+  github-token:
+    secure: myCU8EQjsLM8bulbjI5fk2APpYKJmUqXfGO0kao+NUmOyhHEy/ggFYvl3iaFaesSVU2AjfNdo0efyTbysiO7i62+QgPhzcyHs8Kn8EHFfyybVS8XOQDlpGXjo4zGcVTBbprhP4zZ6SxYb98waNlCTz+7zJkoMDTRnRk4CCeMtjvHDe+H1tB0W80fQyCd4ZzDgQMx9n5WAKWa72ZKlg73Kme9GX/bRHFJdlYJ/CScpahR1i70XbfuUX3IlKxn+EF8bQuovV8NrxWkrlykCg+6jdI1d8G5+Y6sbHi5LwWln23qaRxJQDtV2laQ7MuENlzNNnwIbxPacJ/u2N96o4SfQkP01HhVu4dBEjAfs3OzknvISjnLcpCMazJHGokK7JI9xMVC5ypoOni05Vhy+CxWgTOtvSk7ugSjZB1c+ZQjuA5eDaMjPzSPlAKQc88Gm/GJI/fhFuIvX3CQbxSb9A1nnZpDp+NH54wcr6wwbm+FAkOiBRRdkCoTTMkP2HlqX0OHgsFgZC4kNAcXqvRaKuL1a8UaeenRoYr2gk9//JDde6Yfyuu1/ZX4y5TJd9Khk2hwDNv5p3NsZcRiNTTT7whuczjU2x70n/ESPv12p2TuAr15LBVCtNUZbAJ/MS7x7ew5rNINesQYhdhvhA0t1aLL0/tSDpentPnf/zmXkTW+w3g=
+  keep-history: true
   on:
     branch: master
-notifications:
-  email: false
 
-# Web Interface settings:
 
-## Disable "Build pushed pull requests"
-
-## Environment Variables:
-#### COHERENT_DOCKER_SETTINGS: '{ "host":"example.org:1234", "ca":"", "cert":"", "key":"" }'
-#### COHERENT_APP_SETTINGS: '{ "env":"Staging", "settings":{ /* contents of appsettings.json */ } }'
+## Notes:
+### Disable building PRs (might expose environment variables)

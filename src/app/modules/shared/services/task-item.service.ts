@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-
 import { from } from 'rxjs';
-import { testTaskItems, testTaskLists } from '../test-data';
-import { TaskList } from '../models/task-list';
+import { map } from 'rxjs/operators';
+import { testTaskItems } from '../test-data';
 import { TaskItem } from '../models/task-item';
 import { TaskItemTags } from '../models/task-item-tags';
 
@@ -17,7 +15,9 @@ export class TaskItemService {
 
     getTaskItem(userId: string, listId: string, taskId: string) {
         return from(testTaskItems.filter(task => task.id === taskId && task.list === listId))
-            .map(task => <TaskItem>Object.assign({}, task));
+            .pipe(
+                map(task => <TaskItem>Object.assign({}, task))
+            );
     }
 
     get(id: string) {

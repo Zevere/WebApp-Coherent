@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { TaskList } from '../models/task-list';
-
-
 import { from } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { TaskList } from '../models/task-list';
 import { testTaskItems, testTaskLists } from '../test-data';
 import { TaskListTags } from '../models/task-list-tags';
 import { TaskItem } from '../models/task-item';
@@ -18,7 +17,9 @@ export class TaskListService {
 
     getTaskList(userId: string, listId: string) {
         return from(testTaskLists.filter(list => list.id === listId && list.owner === userId))
-            .map(list => <TaskList>Object.assign({}, list));
+            .pipe(
+                map(list => <TaskList>Object.assign({}, list))
+            );
     }
 
     addCollaborator(listId: string, collaboratorId: string) {
