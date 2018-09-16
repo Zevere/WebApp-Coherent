@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { LoginComponent } from './modules/home/components/login/login.component';
+import { RegisterComponent } from './modules/home/components/register/register.component';
 import { DashboardComponent } from './modules/home/components/dashboard/dashboard.component';
 import { HomeComponent } from './modules/home/components/home/home.component';
 import { NotFoundComponent } from './modules/home/components/not-found/not-found.component';
@@ -13,6 +14,7 @@ import { TaskItemComponent } from './modules/task-item/components/task-item/task
 export function getRoutes(): Routes {
     return [
         {path: 'login', component: LoginComponent},
+        {path: 'register', component: RegisterComponent},
         {path: 'home', component: HomeComponent},
         {path: 'dashboard', component: DashboardComponent},
         {path: 'my-lists', component: AllTaskListsComponent},
