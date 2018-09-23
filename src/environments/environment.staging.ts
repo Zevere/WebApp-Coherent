@@ -2,5 +2,5 @@ import { Environment } from './environment';
 
 export const environment: Environment = {
     production: true,
-    apiBaseUrl: 'https://zevere.herokuapp.com'
+    apiBaseUrl: 'https://zevere-staging.herokuapp.com'
 };
