@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserInput } from '../models/user-input';
 import { User } from '../../shared/models/user';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class RegistrationService {
@@ -12,9 +13,18 @@ export class RegistrationService {
     }
 
     registerUser(input: UserInput) {
-        const mutation = `mutation{createUser(user:$u){token}}`;
-
         return this._http
-            .post<User>('/zv/GraphQL', {u: input});
+            .post('/zv/GraphQL', {
+                query: `mutation ($u: UserInput!) { createUser(user: $u) { token } }`,
+                variables: {u: input}
+            })
+            .pipe(
+                map<any, User>(resp => {
+                    if (resp.errors && resp.errors.length) {
+                        throw resp.errors[0].message;
+                    }
+                    return resp.data.createUser;
+                })
+            );
     }
 }
