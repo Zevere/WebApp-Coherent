@@ -32,11 +32,6 @@ export class AuthService {
         return fromEvent(this._authEventEmitter, 'logout');
     }
 
-    registerUser(user: User) {
-        return this._http
-            .post<User>('/api/register', user);
-    }
-
     login(login: { username: string, password: string }) {
         return this._http
             .post<User>('/api/login', login)

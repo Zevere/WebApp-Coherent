@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
 import { AuthService } from '../shared/services/auth.service';
@@ -11,11 +12,14 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { RegistrationService } from './services/registration.service';
 
 @NgModule({
     imports: [
         CommonModule,
         RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
         SharedModule
     ],
     declarations: [
@@ -27,7 +31,8 @@ import { RegisterComponent } from './components/register/register.component';
         DashboardComponent,
     ],
     providers: [
-        AuthService
+        AuthService,
+        RegistrationService,
     ],
     exports: [
         NavbarComponent
