@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 
 import { User } from '../models/user';
 import { testUsers } from '../test-data';
-import { LoginInput } from '../../home/models/login-input';
+import { LoginInput } from '../../main/models/login-input';
 import { ensureSuccessResponse } from '../helpers/ensure-success-response';
 
 @Injectable()

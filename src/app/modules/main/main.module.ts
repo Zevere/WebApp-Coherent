@@ -38,5 +38,5 @@ import { RegistrationService } from './services/registration.service';
         NavbarComponent
     ]
 })
-export class HomeModule {
+export class MainModule {
 }

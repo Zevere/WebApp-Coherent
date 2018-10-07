@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
-import { HomeModule } from './modules/home/home.module';
+import { MainModule } from './modules/main/main.module';
 import { TaskListModule } from './modules/task-list/task-list.module';
 
 import { AppComponent } from './app.component';
@@ -20,7 +20,7 @@ import { ApiUrlInterceptor } from './modules/shared/interceptors/api-url.interce
         BrowserModule.withServerTransition({appId: 'coherent'}),
         RouterModule.forRoot(getRoutes()),
         HttpClientModule,
-        HomeModule,
+        MainModule,
         ProfileModule,
         TaskListModule,
         TaskItemModule,

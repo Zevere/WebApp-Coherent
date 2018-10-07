@@ -25,7 +25,7 @@ cache:
 script:
   - export repo_name=$(echo $TRAVIS_REPO_SLUG | cut -d"/" -f2)
   - npm run build -- --configuration staging $([ "$TRAVIS_BRANCH" = 'master' ] && echo -- --base-href=/${repo_name}/)
-  - docker build --tag webapp-coherent --no-cache .
+  - docker build --tag webapp-coherent .
 
 deploy:
   - provider: script

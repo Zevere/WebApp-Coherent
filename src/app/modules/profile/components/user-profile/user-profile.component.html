@@ -1,3 +1,48 @@
-<p>
-  user-profile works!
-</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            <form [formGroup]="profileForm">
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="firstName">First Name</label>
+                        <input type="text" class="form-control" id="firstName" formControlName="firstName"
+                               autocomplete="given-name">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" formControlName="lastName"
+                               autocomplete="family-name">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="name">User Name</label>
+                        <input type="text" class="form-control" id="name" formControlName="name"
+                               autocomplete="username">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="pass">Passphrase</label>
+                        <input type="password" class="form-control" id="pass" formControlName="passphrase"
+                               autocomplete="current-password" placeholder="*********">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group text-right col-md-12">
+                        <button type="submit" class="btn btn-success" disabled>
+                            <i class="fa fa-save"></i>
+                            Update
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
