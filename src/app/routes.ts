@@ -15,7 +15,7 @@ export function getRoutes(): Routes {
     return [
         {path: 'login', component: LoginComponent},
         {path: 'register', component: RegisterComponent},
-        {path: 'main', component: HomeComponent},
+        {path: 'home', component: HomeComponent},
         {path: 'dashboard', component: DashboardComponent},
         {path: 'profile', component: UserProfileComponent},
         {path: 'my-lists', component: AllTaskListsComponent},
@@ -40,7 +40,7 @@ export function getRoutes(): Routes {
                 },
             ],
         },
-        {path: '', redirectTo: 'main', pathMatch: 'full'},
+        {path: '', redirectTo: 'home', pathMatch: 'full'},
         {path: '**', component: NotFoundComponent}
     ];
 }
