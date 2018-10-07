@@ -16,3 +16,9 @@ Zevere web app powered by Angular 6
     ```sh
     npm start
     ```
+
+Alternatively, you can use the Docker image:
+
+```sh
+docker run --tty --publish 8080:4000 zevere/webapp-coherent:edge
+```
