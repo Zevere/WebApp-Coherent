@@ -1,18 +1,21 @@
 dist: trusty
 sudo: required
-shallow_clone: true
-services:
-  - docker
 language: node_js
 node_js:
   - node
 branches:
   except:
-    - gh-pages
+  - gh-pages
 notifications:
   email:
     on_success: never
     on_failure: always
+
+services:
+  - docker
+install:
+  - cd scripts && npm install && cd ..
+  - npm install
 
 cache:
   directories:
@@ -21,17 +24,43 @@ cache:
 script:
   - export repo_name=$(echo $TRAVIS_REPO_SLUG | cut -d"/" -f2)
   - npm run build -- --configuration staging $([ "$TRAVIS_BRANCH" = 'master' ] && echo -- --base-href=/${repo_name}/)
+  - docker build --tag webapp-coherent --no-cache .
 
 deploy:
-  provider: pages
-  local-dir: dist
-  skip-cleanup: true
-  github-token:
-    secure: myCU8EQjsLM8bulbjI5fk2APpYKJmUqXfGO0kao+NUmOyhHEy/ggFYvl3iaFaesSVU2AjfNdo0efyTbysiO7i62+QgPhzcyHs8Kn8EHFfyybVS8XOQDlpGXjo4zGcVTBbprhP4zZ6SxYb98waNlCTz+7zJkoMDTRnRk4CCeMtjvHDe+H1tB0W80fQyCd4ZzDgQMx9n5WAKWa72ZKlg73Kme9GX/bRHFJdlYJ/CScpahR1i70XbfuUX3IlKxn+EF8bQuovV8NrxWkrlykCg+6jdI1d8G5+Y6sbHi5LwWln23qaRxJQDtV2laQ7MuENlzNNnwIbxPacJ/u2N96o4SfQkP01HhVu4dBEjAfs3OzknvISjnLcpCMazJHGokK7JI9xMVC5ypoOni05Vhy+CxWgTOtvSk7ugSjZB1c+ZQjuA5eDaMjPzSPlAKQc88Gm/GJI/fhFuIvX3CQbxSb9A1nnZpDp+NH54wcr6wwbm+FAkOiBRRdkCoTTMkP2HlqX0OHgsFgZC4kNAcXqvRaKuL1a8UaeenRoYr2gk9//JDde6Yfyuu1/ZX4y5TJd9Khk2hwDNv5p3NsZcRiNTTT7whuczjU2x70n/ESPv12p2TuAr15LBVCtNUZbAJ/MS7x7ew5rNINesQYhdhvhA0t1aLL0/tSDpentPnf/zmXkTW+w3g=
-  keep-history: true
-  on:
-    branch: master
+  - provider: script
+    skip_cleanup: true
+    script: node scripts/deploy Staging
+    on:
+      branch: master
+
+  - provider: pages
+    local-dir: dist
+    skip-cleanup: true
+    github-token:
+        secure: myCU8EQjsLM8bulbjI5fk2APpYKJmUqXfGO0kao+NUmOyhHEy/ggFYvl3iaFaesSVU2AjfNdo0efyTbysiO7i62+QgPhzcyHs8Kn8EHFfyybVS8XOQDlpGXjo4zGcVTBbprhP4zZ6SxYb98waNlCTz+7zJkoMDTRnRk4CCeMtjvHDe+H1tB0W80fQyCd4ZzDgQMx9n5WAKWa72ZKlg73Kme9GX/bRHFJdlYJ/CScpahR1i70XbfuUX3IlKxn+EF8bQuovV8NrxWkrlykCg+6jdI1d8G5+Y6sbHi5LwWln23qaRxJQDtV2laQ7MuENlzNNnwIbxPacJ/u2N96o4SfQkP01HhVu4dBEjAfs3OzknvISjnLcpCMazJHGokK7JI9xMVC5ypoOni05Vhy+CxWgTOtvSk7ugSjZB1c+ZQjuA5eDaMjPzSPlAKQc88Gm/GJI/fhFuIvX3CQbxSb9A1nnZpDp+NH54wcr6wwbm+FAkOiBRRdkCoTTMkP2HlqX0OHgsFgZC4kNAcXqvRaKuL1a8UaeenRoYr2gk9//JDde6Yfyuu1/ZX4y5TJd9Khk2hwDNv5p3NsZcRiNTTT7whuczjU2x70n/ESPv12p2TuAr15LBVCtNUZbAJ/MS7x7ew5rNINesQYhdhvhA0t1aLL0/tSDpentPnf/zmXkTW+w3g=
+    keep-history: true
+    on:
+        branch: master
+
+env:
+  # DEPLOY_SETTINGS_JSON='{"Staging":[ /* ... */ ]}'
+  - secure: RKXblhbEEmH+qm6cmt3xEQRV9POQTPlsdlO6P7Vf1/SVYM4rfEy+stt8KCRJWXkv/cUYTNFYtNIdT8HK2pA6+UPJB+epxovMZrhEn2QHApFh1YeaBy+odDjGP5DLDcyak9m8xj17oKuf0LcE+jdWm0LYFQvwxoiOn5Ggp6jpNGLt7sajsfnsU/0O1AteXc8vFJvdWlPmsE7ezFspUPSSt51vlboqDE7Fj27CqtsXx/aLW3olfX50L4n2fZES/2VZXOwvZLVm7SoC+hxfXaKasTG8U6zji1bcCKdqlbPAWQEkNTxLZi2G3KMFef2j78HTNB7d5kagth7QXr7hWwmI+pozuREh1PJgPj+ObL/7TkIDqNJ58/d9NXk02j1qnAJiIu/myHPy5nLtSyKw9V9q9gfUghoCpPb7ylqfEOJVyedaWul/8Dpezni1aNs6CO+0pbudtzwdvco3f66n8s1bRQidTQ3xHaDDgK8XX8OmEt1ErYg3oHCYSRPXvb1lWVKSB7hw7jTsi9P/q9C5PtdTMiiiw716Tt0eSLQTemHVtMY+VcxNpexWFLpfIDLq6RshO3svXLLYtDF8TElpGQhC3RtoSCKirKGskv6QbcOyTwJ6whhor4wU+NVP4443VTUoTin6teqYFpB0+RBoKiZmc2K33VXhp8OuSgSrr9pRBbA=
 
 
-## Notes:
-### Disable building PRs (might expose environment variables)
+# Disable "Build pushed pull requests"
+
+# env:
+#   DEPLOY_SETTINGS_JSON: A mapping of environment to the deployment types and their options.
+#   {
+#     "Staging": [
+#       { "type": "docker",
+#         "options": { "source": "foo:edge", "target": "foo/bar:latest", "user": "foo", "pass": "PASS" }
+#       },
+#       { "type": "heroku",
+#         "options": {
+#           "app": "foo-staging", "source": "foo:latest", "dyno": "web", "user": "foo@example.org", "token": "TOKEN"
+#         }
+#       }
+#     ],
+#     "Production": [ ]
+#   }

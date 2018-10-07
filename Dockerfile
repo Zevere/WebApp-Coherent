@@ -13,4 +13,7 @@ RUN npm run build -- --configuration ${configuration}
 # build server-side app
 RUN npm run build:ssr-only
 
+# remove devDependencies from /app/node_modules/
+RUN npm prune --production
+
 CMD npm run serve:ssr
