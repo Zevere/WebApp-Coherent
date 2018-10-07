@@ -7,4 +7,7 @@ import { EnvSettings } from './env-settings';
 
 export const environment: EnvSettings = {
     production: false,
+
+    tgBot: 'samplebot',
+    tgRedirectUrl: 'https://example.org/foo',
 };
