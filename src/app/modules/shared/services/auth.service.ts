@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter } from 'events';
 import { fromEvent } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { User } from '../models/user';
 import { testUsers } from '../test-data';
+import { LoginInput } from '../../home/models/login-input';
+import { ensureSuccessResponse } from '../helpers/ensure-success-response';
 
 @Injectable()
 export class AuthService {
@@ -21,7 +23,7 @@ export class AuthService {
     constructor(
         private _http: HttpClient
     ) {
-        this._currentUser = testUsers[1];
+        this._currentUser = testUsers[1]; // ToDo remove
     }
 
     watchLogin() {
@@ -32,25 +34,23 @@ export class AuthService {
         return fromEvent(this._authEventEmitter, 'logout');
     }
 
-    login(login: { username: string, password: string }) {
+    login(login: LoginInput) {
         return this._http
-            .post<User>('/api/login', login)
+            .post('/zv/GraphQL', {
+                query: `mutation ($l: LoginInput!) { login(login: $l) { id firstName lastName token } }`,
+                variables: {l: login}
+            })
             .pipe(
-                tap(user => {
-                    this._currentUser = user;
-                    this._authEventEmitter.emit('login', user);
+                map<any, void>(resp => {
+                    ensureSuccessResponse(resp);
+                    this._currentUser = <User> resp.data.login;
+                    this._authEventEmitter.emit('login', this.user);
                 })
             );
     }
 
     logout() {
-        return this._http
-            .post('/api/logout', null)
-            .pipe(
-                tap(() => {
-                    this._authEventEmitter.emit('logout');
-                    this._currentUser = null;
-                })
-            );
+        this._authEventEmitter.emit('logout');
+        this._currentUser = null;
     }
 }

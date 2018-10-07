@@ -27,22 +27,22 @@
 
         <form class="form-inline my-2 my-lg-0">
             <div *ngIf="user">
-                <a role="button" class="btn btn-outline-dark" routerLink="/profile" routerLinkActive="active">
+                <a role="button" class="btn btn-outline-dark mx-1" routerLink="/profile" routerLinkActive="active">
                     <i class="fa fa-user-circle"></i>
                     My Profile
                 </a>
-                <button role="button" class="btn btn-outline-danger" (click)="logout()">
+                <button role="button" class="btn btn-outline-danger mx-1" (click)="logout()">
                     <i class="fa fa-sign-out"></i>
                     Logout
                 </button>
             </div>
 
             <div *ngIf="!user">
-                <a role="button" class="btn btn-outline-primary" routerLink="/login" routerLinkActive="active">
+                <a role="button" class="btn btn-primary mx-1" routerLink="/login" routerLinkActive="active">
                     <i class="fa fa-sign-in"></i>
                     Login
                 </a>
-                <a role="button" class="btn btn-outline-success" routerLink="/register" routerLinkActive="active">
+                <a role="button" class="btn btn-success mx-1" routerLink="/register" routerLinkActive="active">
                     <i class="fa fa-user-plus"></i>
                     Register
                 </a>
