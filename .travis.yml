@@ -20,6 +20,7 @@ install:
 cache:
   directories:
     - node_modules
+    - scripts/node_modules
 
 script:
   - export repo_name=$(echo $TRAVIS_REPO_SLUG | cut -d"/" -f2)
@@ -31,7 +32,7 @@ deploy:
     skip_cleanup: true
     script: node scripts/deploy Staging
     on:
-      branch: master
+      branch: develop
 
   - provider: pages
     local-dir: dist
