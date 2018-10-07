@@ -14,8 +14,8 @@ notifications:
 services:
   - docker
 install:
-  - cd scripts && npm install && cd ..
-  - npm install
+  - cd scripts && npm ci && cd ..
+  - npm ci
 
 cache:
   directories:

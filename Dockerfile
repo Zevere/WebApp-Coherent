@@ -5,7 +5,7 @@ WORKDIR /app/
 COPY . .
 
 # restore dependencies
-RUN npm install
+RUN npm ci
 
 # build client-side(browser) app
 RUN npm run build -- --configuration ${configuration}
