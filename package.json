@@ -5,11 +5,12 @@
     "scripts": {
         "ng": "node \"node_modules/@angular/cli/bin/ng\"",
         "start": "npm run ng -- serve --proxy-config proxy.conf.json",
-        "build": "npm run ng -- build --configuration staging",
+        "build": "npm run ng -- build",
         "test": "npm run ng -- test",
         "lint": "npm run ng -- lint",
         "e2e": "npm run ng -- e2e",
         "build:ssr": "npm run build:client-and-server-bundles && npm run webpack:server",
+        "build:ssr-only": "ng run coherent:server && npm run webpack:server",
         "serve:ssr": "node dist/server",
         "build:client-and-server-bundles": "ng build --prod && ng run coherent:server",
         "webpack:server": "webpack --config webpack.server.config.js --progress --colors"

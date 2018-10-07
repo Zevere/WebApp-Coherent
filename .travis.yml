@@ -20,7 +20,7 @@ cache:
 
 script:
   - export repo_name=$(echo $TRAVIS_REPO_SLUG | cut -d"/" -f2)
-  - npm run build $([ "$TRAVIS_BRANCH" = 'master' ] && echo -- --base-href=/${repo_name}/)
+  - npm run build -- --configuration staging $([ "$TRAVIS_BRANCH" = 'master' ] && echo -- --base-href=/${repo_name}/)
 
 deploy:
   provider: pages
