@@ -40,15 +40,7 @@ export class NavbarComponent implements OnInit {
     }
 
     logout() {
-        this._authService
-            .logout()
-            .subscribe(
-                () => {
-                    this._router.navigate(['']);
-                },
-                e => {
-                    console.error('Failed to logout');
-                }
-            );
+        this._authService.logout();
+        this._router.navigate(['']);
     }
 }

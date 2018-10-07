@@ -17,7 +17,7 @@ import { ApiUrlInterceptor } from './modules/shared/interceptors/api-url.interce
         AppComponent,
     ],
     imports: [
-        BrowserModule,
+        BrowserModule.withServerTransition({appId: 'coherent'}),
         RouterModule.forRoot(getRoutes()),
         HttpClientModule,
         HomeModule,
