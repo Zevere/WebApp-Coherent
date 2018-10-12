@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
     private redirectToUri() {
         let uri = this._redirectUri;
         if (uri) {
-            if (/(?:http|https|slack):\/\/.+/gi.test(uri)) {
+            if (/^(?:http|https|slack):\/\/.+/gi.test(uri)) {
                 // absolute URI means redirect to the outside of this app
                 const username = 'zv-user=' + encodeURIComponent(this._authService.user.id);
 
