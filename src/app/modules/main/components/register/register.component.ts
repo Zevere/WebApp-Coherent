@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { areEqual } from '../../../shared/form-validators/are-equal.validator';
 import { RegistrationService } from '../../services/registration.service';
 import { UserInput } from '../../models/user-input';
 import { Router } from '@angular/router';
 import { getErrorMessage } from '../../../shared/helpers/get-error-message';
+import { AuthService } from '../../../shared/services/auth.service';
 
 @Component({
     selector: 'app-register',
@@ -17,8 +19,10 @@ export class RegisterComponent {
     error?: string;
 
     constructor(
+        private _authService: AuthService,
         private _registrationService: RegistrationService,
         private _router: Router,
+        @Inject(DOCUMENT) private _document: any,
         formBuilder: FormBuilder
     ) {
         this.registrationForm = formBuilder.group({
@@ -39,7 +43,7 @@ export class RegisterComponent {
             .registerUser(this.getModel())
             .subscribe(
                 () => {
-                    this._router.navigate(['/']);
+                    this._authService.redirectToUri(this._document, this._router);
                 },
                 e => {
                     this.error = getErrorMessage(e);

@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     isSending: boolean;
     error?: string;
-    _redirectUri?: string;
 
     constructor(
         private _authService: AuthService,
@@ -34,7 +33,7 @@ export class LoginComponent implements OnInit {
         this._route.queryParamMap
             .subscribe(map => {
                 if (map.has('redirect_uri')) {
-                    this._redirectUri = decodeURIComponent(map.get('redirect_uri'));
+                    this._authService.redirectUri = decodeURIComponent(map.get('redirect_uri'));
                 }
             });
     }
@@ -45,7 +44,7 @@ export class LoginComponent implements OnInit {
             .login(this.getModel())
             .subscribe(
                 () => {
-                    this.redirectToUri();
+                    this._authService.redirectToUri(this._document, this._router);
                 },
                 e => {
                     this.error = getErrorMessage(e);
@@ -59,12 +58,11 @@ export class LoginComponent implements OnInit {
         return newModel;
     }
 
-    private redirectToUri() {
-        let uri = this._redirectUri;
+    public redirectToUri(userId: string, uri?: string) {
         if (uri) {
-            if (/^(?:http|https|slack):\/\/.+/gi.test(uri)) {
+            if (/^(?:http|https|slack|tg):\/\/.+/gi.test(uri)) {
                 // absolute URI means redirect to the outside of this app
-                const username = 'zv-user=' + encodeURIComponent(this._authService.user.id);
+                const username = 'zv-user=' + encodeURIComponent(userId);
 
                 uri += uri.indexOf('?') > 0 ? '&' : '?';
                 uri += username;
