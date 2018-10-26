@@ -72,7 +72,7 @@ export class AuthService {
                 // absolute URI means redirect to the outside of this app
                 const username = 'zv-user=' + encodeURIComponent(this.user.id);
 
-                uri += uri.indexOf('?') > 0 ? '&' : '?';
+                uri += uri.includes('?') ? '&' : '?';
                 uri += username;
 
                 document.location.href = uri;
