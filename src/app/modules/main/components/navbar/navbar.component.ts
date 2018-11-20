@@ -8,9 +8,7 @@ import { User } from '../../../shared/models/user';
     templateUrl: './navbar.component.html'
 })
 export class NavbarComponent implements OnInit {
-
     user?: User;
-
     profileLink: string[];
 
     constructor(

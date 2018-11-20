@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskList } from '../../../shared/models/task-list';
 import { TaskListService } from '../../../shared/services/task-list.service';
+import { AuthService } from '../../../shared/services/auth.service';
 
 @Component({
-    selector: 'app-all-task-lists',
-    templateUrl: './all-task-lists.component.html'
+    selector: 'app-my-task-lists',
+    templateUrl: './my-task-lists.component.html'
 })
-export class AllTaskListsComponent implements OnInit {
+export class MyTaskListsComponent implements OnInit {
     taskLists?: TaskList[];
 
     constructor(
+        private _authService: AuthService,
         private _tasksListsService: TaskListService
     ) {
     }
@@ -20,7 +22,7 @@ export class AllTaskListsComponent implements OnInit {
 
     loadAllTaskLists() {
         this._tasksListsService
-            .getAllTaskLists(null) // ToDo pass user id from route params
+            .getAllTaskLists(this._authService.user.id)
             .subscribe(
                 lists => {
                     this.taskLists = lists;

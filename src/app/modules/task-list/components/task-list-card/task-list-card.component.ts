@@ -17,6 +17,10 @@ export class TaskListCardComponent implements OnInit {
     private parseTags() {
         // ToDo iterate array once
 
+        if (!this.taskList.tags) {
+            return;
+        }
+
         this.tags = this.taskList
             .tags
             .map((t: string) => t.substr(t.indexOf(':') + 1));

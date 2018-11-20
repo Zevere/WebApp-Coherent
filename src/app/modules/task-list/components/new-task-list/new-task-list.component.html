@@ -1,0 +1,45 @@
+<div class="card" style="border:0">
+    <div class="card-body">
+        <h3 class="text-center">
+            Create New Task List
+        </h3>
+        <div class="col-md-6 offset-md-3">
+            <form [formGroup]="newListForm" (ngSubmit)="createNewList()">
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="title">Title*</label>
+                        <input type="text" class="form-control" id="title" formControlName="title"
+                               placeholder="Title of the task list e.g. Groceries">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-8">
+                        <label for="description">Description</label>
+                        <textarea type="text" class="form-control" id="description" formControlName="description">
+                        </textarea>
+                    </div>
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-success"
+                            [disabled]="isSending || newListForm.pristine || newListForm.invalid">
+                        <i class="fa fa-plus"></i>
+                        Create
+                    </button>
+                    <i class="fa fa-spinner fa-pulse" *ngIf="isSending"></i>
+                </div>
+            </form>
+
+            <div class="row text-center">
+                <div class="alert alert-danger" *ngIf="error">
+                    Operation Failed!
+                    <br/>
+                    <p> {{ error }} </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

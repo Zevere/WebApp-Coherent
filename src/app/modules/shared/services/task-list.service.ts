@@ -3,10 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { from } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TaskList } from '../models/task-list';
-import { testTaskItems, testTaskLists } from '../test-data';
-import { TaskListTags } from '../models/task-list-tags';
-import { TaskItem } from '../models/task-item';
-import { TaskItemTags } from '../models/task-item-tags';
+import { testTaskLists } from '../test-data';
+import { ensureSuccessResponse } from '../helpers/ensure-success-response';
+import { TaskListInput } from '../../task-list/models/task-list-input';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable()
 export class TaskListService {
@@ -34,35 +34,30 @@ export class TaskListService {
     }
 
     getAllTaskLists(userId: string) {
-        return from([testTaskLists]);
-
-        /*
         return this._http
-            .post(`/zv/graphql`, {
-                query: `{
-                  user(userId: "bobby") {
-                    lists {
-                      id title createdAt
-                      tasks {
-                          id
-                          title
-                          description
-                          due
-                          projectTags
-                          createdAt
-                      }
-                    }
-                  }
-                }`
+            .post('/zv/GraphQL', {
+                query: `query getAllTaskLists($u:String!) { user(userId: $u) { lists { id title createdAt } } }`,
+                variables: {u: userId}
             })
-            .do(throwIfHasErrors)
-            .map<any, TaskList[]>(res => res.data.user.lists);
-        */
+            .pipe(
+                map<any, TaskList[]>(resp => {
+                    ensureSuccessResponse(resp);
+                    return <TaskList[]>resp.data.user.lists;
+                })
+            );
     }
-}
 
-function throwIfHasErrors(response: any) {
-    if (response.errors && response.errors.length) {
-        throw new Error(response.errors[0].message);
+    createList(ownerId: string, input: TaskListInput): Observable<TaskList> {
+        return this._http
+            .post('/zv/GraphQL', {
+                query: `mutation createList($u:String!,$i:ListInput!) { createList(owner:$u,list:$i) { id createdAt } }`,
+                variables: {u: ownerId, i: input}
+            })
+            .pipe(
+                map<any, TaskList>(resp => {
+                    ensureSuccessResponse(resp);
+                    return <TaskList>resp.data.createList;
+                })
+            );
     }
 }
