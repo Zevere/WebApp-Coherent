@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { TaskListCardComponent } from './components/task-list-card/task-list-card.component';
-import { MyTaskListsComponent } from './components/my-task-lists/my-task-lists.component';
+import { AllTaskListsComponent } from './components/all-task-lists/all-task-lists.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { SharedModule } from '../shared/shared.module';
 import { CommentModule } from '../comment/comment.module';
@@ -26,7 +26,7 @@ import { NewTaskListComponent } from './components/new-task-list/new-task-list.c
     ],
     declarations: [
         TaskListCardComponent,
-        MyTaskListsComponent,
+        AllTaskListsComponent,
         NewTaskListComponent,
         TaskListComponent,
         TaskListSummaryComponent

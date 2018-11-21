@@ -17,18 +17,16 @@ export class TaskListCardComponent implements OnInit {
     private parseTags() {
         // ToDo iterate array once
 
-        if (!this.taskList.tags) {
-            return;
+        if (this.taskList.tags && this.taskList.tags.length) {
+            this.tags = this.taskList
+                .tags
+                .map((t: string) => t.substr(t.indexOf(':') + 1));
+
+            this.icon = this.taskList
+                .tags
+                .filter((t: string) => t.startsWith('_icon:'))
+                .map((t: string) => t.substr(6))
+                [0];
         }
-
-        this.tags = this.taskList
-            .tags
-            .map((t: string) => t.substr(t.indexOf(':') + 1));
-
-        this.icon = this.taskList
-            .tags
-            .filter((t: string) => t.startsWith('_icon:'))
-            .map((t: string) => t.substr(6))
-            [0];
     }
 }

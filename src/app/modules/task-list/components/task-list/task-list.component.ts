@@ -47,10 +47,12 @@ export class TaskListComponent implements OnInit {
     }
 
     private parseTags() {
-        this.icon = this.taskList
-            .tags
-            .filter((t: string) => t.startsWith('_icon:'))
-            .map((t: string) => t.substr(6))
-            [0];
+        if (this.taskList.tags && this.taskList.tags.length) {
+            this.icon = this.taskList
+                .tags
+                .filter((t: string) => t.startsWith('_icon:'))
+                .map((t: string) => t.substr(6))
+                [0];
+        }
     }
 }

@@ -1,13 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TaskList } from '../../../shared/models/task-list';
-import { Observable } from 'rxjs';
-
-
-import { UserService } from '../../../shared/services/user.service';
-import { User } from '../../../shared/models/user';
 import { NgForm } from '@angular/forms';
-import { TaskListService } from '../../../shared/services/task-list.service';
+import { Observable } from 'rxjs';
 import { concatMap, map } from 'rxjs/operators';
+import { UserService } from '../../../shared/services/user.service';
+import { TaskListService } from '../../../shared/services/task-list.service';
+import { TaskList } from '../../../shared/models/task-list';
+import { User } from '../../../shared/models/user';
 
 @Component({
     selector: 'app-task-list-summary',
@@ -60,13 +58,15 @@ export class TaskListSummaryComponent implements OnInit {
     private parseTags() {
         // ToDo iterate array once
 
-        this.tags = this.taskList
-            .tags
-            .map((t: string) => {
-                return {
-                    name: t.substr(0, t.indexOf(':')),
-                    value: t.substr(t.indexOf(':') + 1)
-                };
-            });
+        if (this.taskList.tags && this.taskList.tags.length) {
+            this.tags = this.taskList
+                .tags
+                .map((t: string) => {
+                    return {
+                        name: t.substr(0, t.indexOf(':')),
+                        value: t.substr(t.indexOf(':') + 1)
+                    };
+                });
+        }
     }
 }

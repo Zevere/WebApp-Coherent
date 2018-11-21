@@ -15,10 +15,10 @@ export class TaskListService {
     ) {
     }
 
-    getTaskList(userId: string, listId: string) {
-        return from(testTaskLists.filter(list => list.id === listId && list.owner === userId))
+    getTaskList(userId: string, listId: string): Observable<TaskList> {
+        return this.getAllTaskLists(userId) // ToDo query a single list by id
             .pipe(
-                map(list => <TaskList>Object.assign({}, list))
+                map(allLists => allLists.find(l => l.id === listId))
             );
     }
 
@@ -33,10 +33,12 @@ export class TaskListService {
         return from([list]);
     }
 
-    getAllTaskLists(userId: string) {
+    getAllTaskLists(userId: string): Observable<TaskList[]> {
         return this._http
             .post('/zv/GraphQL', {
-                query: `query getAllTaskLists($u:String!) { user(userId: $u) { lists { id title createdAt } } }`,
+                query: `query getAllTaskLists($u:String!) { user(userId: $u) {
+                    lists { id title description owner collaborators tags createdAt updatedAt }
+                } }`,
                 variables: {u: userId}
             })
             .pipe(

@@ -2,7 +2,7 @@
     <div class="card-body">
         <h5 class="card-title">
             <i [ngClass]="['fa', 'fa-' + icon]" *ngIf="icon?.length"></i>
-            <a [routerLink]="['/users', taskList.owner, 'lists', taskList.id]">
+            <a [routerLink]="[taskList.id]">
                 {{ taskList.title }}
             </a>
         </h5>

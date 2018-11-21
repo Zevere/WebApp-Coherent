@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="taskList; else loading">
     <div class="row">
         <div class="col-md-12">
             <a class="btn btn-primary pull-right" [routerLink]="['tasks']">
@@ -16,15 +16,6 @@
     <div class="row">
         <div class="col-md-9">
             <p>{{ taskList.description }}</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sed rutrum sapien, tempor tincidunt
-                mauris.
-                Donec augue arcu, imperdiet in lacus vitae, placerat lacinia felis. Maecenas in lobortis sem. Sed mi
-                nunc,
-                convallis id leo quis, placerat bibendum urna. Praesent dapibus sed justo vel egestas. Mauris neque
-                velit,
-                dignissim ut malesuada dignissim, placerat eu sapien. Ut cursus tellus sit amet eleifend fringilla.
-            </p>
 
             <ngb-tabset>
                 <ngb-tab>
@@ -60,3 +51,11 @@
 
     </div>
 </div>
+
+<ng-template #loading>
+    <div class="container">
+        <div class="row text-center">
+            <i class="fa fa-spinner fa-pulse"></i>
+        </div>
+    </div>
+</ng-template>

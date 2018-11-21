@@ -5,9 +5,9 @@ import { AuthService } from '../../../shared/services/auth.service';
 
 @Component({
     selector: 'app-my-task-lists',
-    templateUrl: './my-task-lists.component.html'
+    templateUrl: './all-task-lists.component.html'
 })
-export class MyTaskListsComponent implements OnInit {
+export class AllTaskListsComponent implements OnInit {
     taskLists?: TaskList[];
 
     constructor(

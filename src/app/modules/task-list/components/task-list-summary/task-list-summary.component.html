@@ -3,8 +3,8 @@
     <p>
         <a [routerLink]="['/users/', taskList.owner]">{{ taskList.owner }}</a>
     </p>
+    <hr>
 </div>
-<hr>
 
 <div>
     <h6>
@@ -27,10 +27,10 @@
             <a [routerLink]="['/users/', colabId]">{{ colabId }}</a>
         </li>
     </ul>
+    <hr>
 </div>
-<hr>
 
-<div>
+<div *ngIf="tags">
     <h6>Tags</h6>
     <div *ngFor="let t of tags">
         <span class="badge badge-light">{{t.name}}</span>
@@ -40,8 +40,8 @@
 
     <!--ToDo: Add projectTags-->
     <code>ToDo: Add tags</code>
+    <hr>
 </div>
-<hr>
 
 <h6>Created at {{ taskList.createdAt | date:'EEEE, MMM d, y, h:mm a' }}</h6>
 <h6 *ngIf="taskList.updatedAt">Last Updated at {{ taskList.updatedAt | date:'EEEE, MMM d, y, h:mm a' }}</h6>

@@ -5,7 +5,7 @@ import { RegisterComponent } from './modules/main/components/register/register.c
 import { DashboardComponent } from './modules/main/components/dashboard/dashboard.component';
 import { HomeComponent } from './modules/main/components/home/home.component';
 import { NotFoundComponent } from './modules/main/components/not-found/not-found.component';
-import { MyTaskListsComponent } from './modules/task-list/components/my-task-lists/my-task-lists.component';
+import { AllTaskListsComponent } from './modules/task-list/components/all-task-lists/all-task-lists.component';
 import { TaskListComponent } from './modules/task-list/components/task-list/task-list.component';
 import { UserProfileComponent } from './modules/profile/components/user-profile/user-profile.component';
 import { AllTaskItemsComponent } from './modules/task-item/components/all-task-items/all-task-items.component';
@@ -20,17 +20,12 @@ export function getRoutes(): Routes {
         {path: 'dashboard', component: DashboardComponent},
         {path: 'profile', component: UserProfileComponent},
         {
-            path: 'my-lists', children: [
-                {path: '', component: MyTaskListsComponent, pathMatch: 'full'},
-                {path: 'new', component: NewTaskListComponent},
-            ]
-        },
-        {
             path: 'users/:userId', children: [
                 {path: '', component: UserProfileComponent, pathMatch: 'full'},
                 {
                     path: 'lists', children: [
-                        {path: '', component: MyTaskListsComponent, pathMatch: 'full'},
+                        {path: '', component: AllTaskListsComponent, pathMatch: 'full'},
+                        {path: 'new', component: NewTaskListComponent},
                         {
                             path: ':listId', children: [
                                 {path: '', component: TaskListComponent, pathMatch: 'full'},

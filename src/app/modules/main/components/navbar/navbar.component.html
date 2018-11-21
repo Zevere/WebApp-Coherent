@@ -11,13 +11,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
 
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/my-lists" routerLinkActive="active">
+            <li class="nav-item" *ngIf="user">
+                <a class="nav-link" [routerLink]="['users', user.id, 'lists']" routerLinkActive="active">
                     <i class="fa fa-list"></i>
                     My Task Lists
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="user">
                 <a class="nav-link" routerLink="/my-tasks" routerLinkActive="active">
                     <i class="fa fa-check"></i>
                     Assigned to me
