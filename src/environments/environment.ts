@@ -8,6 +8,8 @@ import { EnvSettings } from './env-settings';
 export const environment: EnvSettings = {
     production: false,
 
+    apiBaseUrl: 'https://zv-s-webapi-borzoo.herokuapp.com',
+
     tgBot: 'samplebot',
     tgRedirectUrl: 'https://example.org/foo',
 };

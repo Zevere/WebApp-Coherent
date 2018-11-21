@@ -1,5 +1,5 @@
 {
-    "/zv/": {
+    "https://zv-s-webapi-borzoo.herokuapp.com/zv/": {
         "target": "http://localhost:5000",
         "secure": false
     }

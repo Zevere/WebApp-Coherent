@@ -17,8 +17,8 @@ export class NewTaskListComponent {
     constructor(
         private _taskListService: TaskListService,
         private _authService: AuthService,
-        private _router: Router,
         private _route: ActivatedRoute,
+        private _router: Router,
         formBuilder: FormBuilder
     ) {
         this.newListForm = formBuilder.group({
@@ -39,6 +39,7 @@ export class NewTaskListComponent {
                 () => {
                     this.isSending = false;
                     this.newListForm.reset();
+                    this._router.navigate(['..'], {relativeTo: this._route});
                 },
                 e => {
                     this.error = getErrorMessage(e);

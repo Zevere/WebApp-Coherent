@@ -16,6 +16,7 @@ export class TaskListComponent implements OnInit {
     constructor(
         private _authService: AuthService,
         private _taskListService: TaskListService,
+        private _route: ActivatedRoute,
         private _router: Router,
         private _activatedRoute: ActivatedRoute
     ) {
@@ -36,7 +37,7 @@ export class TaskListComponent implements OnInit {
             .deleteList(this.taskList.owner, this.taskList.id)
             .subscribe(
                 () => {
-                    this._router.navigate(['..']);
+                    this._router.navigate(['..'], {relativeTo: this._route});
                 },
                 e => {
                     console.warn(e);
