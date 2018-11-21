@@ -31,6 +31,19 @@ export class TaskListComponent implements OnInit {
             );
     }
 
+    delete() {
+        this._taskListService
+            .deleteList(this.taskList.owner, this.taskList.id)
+            .subscribe(
+                () => {
+                    this._router.navigate(['..']);
+                },
+                e => {
+                    console.warn(e);
+                }
+            );
+    }
+
     private getTaskList(userId: string, listId: string) {
         this._taskListService
             .getTaskList(userId, listId)

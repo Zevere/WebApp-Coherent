@@ -62,4 +62,18 @@ export class TaskListService {
                 })
             );
     }
+
+    deleteList(userId: string, listId: string): Observable<boolean> {
+        return this._http
+            .post('/zv/GraphQL', {
+                query: `mutation deleteList($u:String!,$l:String!) { deleteList(owner: $u, list: $l) }`,
+                variables: {u: userId, l: listId}
+            })
+            .pipe(
+                map<any, boolean>(resp => {
+                    ensureSuccessResponse(resp);
+                    return <boolean>resp.data.deleteList;
+                })
+            );
+    }
 }

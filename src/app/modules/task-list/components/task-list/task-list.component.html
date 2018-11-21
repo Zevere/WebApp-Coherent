@@ -5,6 +5,9 @@
                 <i class="fa fa-tasks"></i>
                 See tasks
             </a>
+            <button type="button" class="btn btn-danger mx-2 pull-right" *ngIf="isCurrentUserOwner" (click)="delete()">
+                Delete this list
+            </button>
             <h2>
                 <i [ngClass]="['fa', 'fa-' + icon]" *ngIf="icon?.length"></i>
                 {{ taskList.title }}

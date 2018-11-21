@@ -6,9 +6,16 @@
             </a>
         </div>
     </div>
-    <div class="row" *ngIf="taskLists?.length">
+    <div class="row" *ngIf="taskLists?.length; else noLists">
         <div class="col-md-5" *ngFor="let l of taskLists">
             <app-task-list-card [taskList]="l"></app-task-list-card>
         </div>
     </div>
+    <ng-template #noLists>
+        <div class="row">
+            <div class="col-md-5">
+                <p>You don't have any list. Go ahead and create one.</p>
+            </div>
+        </div>
+    </ng-template>
 </div>
