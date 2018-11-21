@@ -38,6 +38,7 @@ export class NewTaskListComponent {
             .subscribe(
                 () => {
                     this.isSending = false;
+                    this.newListForm.reset();
                 },
                 e => {
                     this.error = getErrorMessage(e);
