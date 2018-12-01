@@ -7,9 +7,7 @@ branches:
   except:
   - gh-pages
 notifications:
-  email:
-    on_success: never
-    on_failure: always
+  email: false
 
 services:
   - docker
@@ -24,44 +22,30 @@ cache:
 
 script:
   - export repo_name=$(echo $TRAVIS_REPO_SLUG | cut -d"/" -f2)
-  - npm run build -- --configuration staging $([ "$TRAVIS_BRANCH" = 'master' ] && echo -- --base-href=/${repo_name}/)
+  - npm run build -- --prod $([ "$TRAVIS_BRANCH" = 'master' ] && echo -- --base-href=/${repo_name}/)
   - docker build --tag webapp-coherent .
 
 deploy:
   - provider: script
     skip_cleanup: true
-    script: node scripts/deploy Staging
+    script: node scripts/deploy Production
     on:
-      branch: develop
-
+      branch: master
   - provider: pages
     local-dir: dist
     skip-cleanup: true
     github-token:
-        secure: myCU8EQjsLM8bulbjI5fk2APpYKJmUqXfGO0kao+NUmOyhHEy/ggFYvl3iaFaesSVU2AjfNdo0efyTbysiO7i62+QgPhzcyHs8Kn8EHFfyybVS8XOQDlpGXjo4zGcVTBbprhP4zZ6SxYb98waNlCTz+7zJkoMDTRnRk4CCeMtjvHDe+H1tB0W80fQyCd4ZzDgQMx9n5WAKWa72ZKlg73Kme9GX/bRHFJdlYJ/CScpahR1i70XbfuUX3IlKxn+EF8bQuovV8NrxWkrlykCg+6jdI1d8G5+Y6sbHi5LwWln23qaRxJQDtV2laQ7MuENlzNNnwIbxPacJ/u2N96o4SfQkP01HhVu4dBEjAfs3OzknvISjnLcpCMazJHGokK7JI9xMVC5ypoOni05Vhy+CxWgTOtvSk7ugSjZB1c+ZQjuA5eDaMjPzSPlAKQc88Gm/GJI/fhFuIvX3CQbxSb9A1nnZpDp+NH54wcr6wwbm+FAkOiBRRdkCoTTMkP2HlqX0OHgsFgZC4kNAcXqvRaKuL1a8UaeenRoYr2gk9//JDde6Yfyuu1/ZX4y5TJd9Khk2hwDNv5p3NsZcRiNTTT7whuczjU2x70n/ESPv12p2TuAr15LBVCtNUZbAJ/MS7x7ew5rNINesQYhdhvhA0t1aLL0/tSDpentPnf/zmXkTW+w3g=
+      secure: myCU8EQjsLM8bulbjI5fk2APpYKJmUqXfGO0kao+NUmOyhHEy/ggFYvl3iaFaesSVU2AjfNdo0efyTbysiO7i62+QgPhzcyHs8Kn8EHFfyybVS8XOQDlpGXjo4zGcVTBbprhP4zZ6SxYb98waNlCTz+7zJkoMDTRnRk4CCeMtjvHDe+H1tB0W80fQyCd4ZzDgQMx9n5WAKWa72ZKlg73Kme9GX/bRHFJdlYJ/CScpahR1i70XbfuUX3IlKxn+EF8bQuovV8NrxWkrlykCg+6jdI1d8G5+Y6sbHi5LwWln23qaRxJQDtV2laQ7MuENlzNNnwIbxPacJ/u2N96o4SfQkP01HhVu4dBEjAfs3OzknvISjnLcpCMazJHGokK7JI9xMVC5ypoOni05Vhy+CxWgTOtvSk7ugSjZB1c+ZQjuA5eDaMjPzSPlAKQc88Gm/GJI/fhFuIvX3CQbxSb9A1nnZpDp+NH54wcr6wwbm+FAkOiBRRdkCoTTMkP2HlqX0OHgsFgZC4kNAcXqvRaKuL1a8UaeenRoYr2gk9//JDde6Yfyuu1/ZX4y5TJd9Khk2hwDNv5p3NsZcRiNTTT7whuczjU2x70n/ESPv12p2TuAr15LBVCtNUZbAJ/MS7x7ew5rNINesQYhdhvhA0t1aLL0/tSDpentPnf/zmXkTW+w3g=
     keep-history: true
     on:
-        branch: master
+      branch: master
 
 env:
-  # DEPLOY_SETTINGS_JSON='{"Staging":[ /* ... */ ]}'
-  - secure: RKXblhbEEmH+qm6cmt3xEQRV9POQTPlsdlO6P7Vf1/SVYM4rfEy+stt8KCRJWXkv/cUYTNFYtNIdT8HK2pA6+UPJB+epxovMZrhEn2QHApFh1YeaBy+odDjGP5DLDcyak9m8xj17oKuf0LcE+jdWm0LYFQvwxoiOn5Ggp6jpNGLt7sajsfnsU/0O1AteXc8vFJvdWlPmsE7ezFspUPSSt51vlboqDE7Fj27CqtsXx/aLW3olfX50L4n2fZES/2VZXOwvZLVm7SoC+hxfXaKasTG8U6zji1bcCKdqlbPAWQEkNTxLZi2G3KMFef2j78HTNB7d5kagth7QXr7hWwmI+pozuREh1PJgPj+ObL/7TkIDqNJ58/d9NXk02j1qnAJiIu/myHPy5nLtSyKw9V9q9gfUghoCpPb7ylqfEOJVyedaWul/8Dpezni1aNs6CO+0pbudtzwdvco3f66n8s1bRQidTQ3xHaDDgK8XX8OmEt1ErYg3oHCYSRPXvb1lWVKSB7hw7jTsi9P/q9C5PtdTMiiiw716Tt0eSLQTemHVtMY+VcxNpexWFLpfIDLq6RshO3svXLLYtDF8TElpGQhC3RtoSCKirKGskv6QbcOyTwJ6whhor4wU+NVP4443VTUoTin6teqYFpB0+RBoKiZmc2K33VXhp8OuSgSrr9pRBbA=
+  # DEPLOY_SETTINGS_JSON='{"Production":[
+  #   {"type":"docker","options":{"source":"webapp-coherent","target":"zevere/webapp-coherent","user":"","pass":""}},
+  #   {"type":"heroku","options":{"app":"zevere","source":"zevere/webapp-coherent","dyno":"web","user":"","token":""}}
+  # ]}'
+  - secure: RmE07phyDhBL5R4G4g/+uvUS7vy4bPX6UWKPDSvp6lWN7ieublcK6g8R6wWnLd1ZVNuCpD/XgY3aGjAdIR4uvyQRpvvwv3BvkYJ8IWZ63Up6W6/8EAjvGd2rLf02gsCHj5wBr6xzZZ0H7ymN1lpdvCiIoUu713Ds9bEG9pgnhfase0b/UxEv5id5zOLY1W0yLrCVbFq8vd/2fynts7hB9IOoJdA/ehCgCl92BFboPAh/LhOyjiMFlTAKfWPj4eCP7Pv6YWXzyTBxH5k2g08aL1RAsMerGfE1Uhfcg2ZnwSPNaOI8uShI63OSpnYN6VvZLGTDYMsSXzd6JPkvaibncfIWbNy3A4+hZEcJFh+0v7dKiKkrXmA8/oM2wEw6K9urZimDO0Q3RfAdi3LC49VzQxlYH+2fw8BfAql+K6QmURyHc5UHXT9coHrmKyrLMnlkYabFqaxfmPHGDNmhtiE6MJ5j15HWA6Sd48APyMvMbIeEbxhtky6Gue7HQtx0iV0NTx9mspCLtp/MMnR5rNuSFfuym9QvvAsOpHbxhUfgoAAa9HypRjcSlxUSHOPIZUmGmsfVGDWKKzjFSn7t12oQHb55GZHCgy1qkniw2YgGtruhvfMEztgXzda/zPckXx5wlLha2BcmV95FMbujYjPuOt/5j7Rmhg+LZkTJvsEl7Hs=
 
 
 # Disable "Build pushed pull requests"
-
-# env:
-#   DEPLOY_SETTINGS_JSON: A mapping of environment to the deployment types and their options.
-#   {
-#     "Staging": [
-#       { "type": "docker",
-#         "options": { "source": "foo:edge", "target": "foo/bar:latest", "user": "foo", "pass": "PASS" }
-#       },
-#       { "type": "heroku",
-#         "options": {
-#           "app": "foo-staging", "source": "foo:latest", "dyno": "web", "user": "foo@example.org", "token": "TOKEN"
-#         }
-#       }
-#     ],
-#     "Production": [ ]
-#   }

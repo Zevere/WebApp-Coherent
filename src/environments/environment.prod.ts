@@ -4,6 +4,6 @@ export const environment: EnvSettings = {
     production: true,
     apiBaseUrl: 'https://zv-webapi-borzoo.herokuapp.com',
 
-    tgBot: 'zvBot',
+    tgBot: 'ZevereBot',
     tgRedirectUrl: 'https://zv-chatbot-hepir.herokuapp.com/api/login-widget'
 };

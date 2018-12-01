@@ -1,5 +1,5 @@
 FROM node:alpine
-ARG configuration=staging
+ARG configuration=production
 
 WORKDIR /app/
 COPY . .
