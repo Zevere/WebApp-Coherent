@@ -32,7 +32,7 @@ deploy:
     on:
       branch: master
   - provider: pages
-    local-dir: dist
+    local-dir: dist/browser/
     skip-cleanup: true
     github-token:
       secure: myCU8EQjsLM8bulbjI5fk2APpYKJmUqXfGO0kao+NUmOyhHEy/ggFYvl3iaFaesSVU2AjfNdo0efyTbysiO7i62+QgPhzcyHs8Kn8EHFfyybVS8XOQDlpGXjo4zGcVTBbprhP4zZ6SxYb98waNlCTz+7zJkoMDTRnRk4CCeMtjvHDe+H1tB0W80fQyCd4ZzDgQMx9n5WAKWa72ZKlg73Kme9GX/bRHFJdlYJ/CScpahR1i70XbfuUX3IlKxn+EF8bQuovV8NrxWkrlykCg+6jdI1d8G5+Y6sbHi5LwWln23qaRxJQDtV2laQ7MuENlzNNnwIbxPacJ/u2N96o4SfQkP01HhVu4dBEjAfs3OzknvISjnLcpCMazJHGokK7JI9xMVC5ypoOni05Vhy+CxWgTOtvSk7ugSjZB1c+ZQjuA5eDaMjPzSPlAKQc88Gm/GJI/fhFuIvX3CQbxSb9A1nnZpDp+NH54wcr6wwbm+FAkOiBRRdkCoTTMkP2HlqX0OHgsFgZC4kNAcXqvRaKuL1a8UaeenRoYr2gk9//JDde6Yfyuu1/ZX4y5TJd9Khk2hwDNv5p3NsZcRiNTTT7whuczjU2x70n/ESPv12p2TuAr15LBVCtNUZbAJ/MS7x7ew5rNINesQYhdhvhA0t1aLL0/tSDpentPnf/zmXkTW+w3g=
