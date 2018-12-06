@@ -1,5 +1,29 @@
-<app-all-project-tasks *ngIf="taskListTags?.kind === 'project'"
-                       [project]="taskList" [tasks]="taskItems" [projectTags]="taskListTags"></app-all-project-tasks>
+<div class="container">
+    <div class="row">
+        <div class="col-md-1">
+            <a class="btn btn-secondary" routerLink="new">
+                <i class="fa fa-plus"></i> Add New Task
+            </a>
+        </div>
+    </div>
 
-<app-all-todo-tasks *ngIf="!taskListTags.kind || taskListTags.kind === 'todo'"
-                    [taskList]="taskList" [taskItems]="taskItems" [taskListTags]="taskListTags"></app-all-todo-tasks>
+    <div class="row" *ngIf="taskItems?.length; else noTasks">
+
+        <!--<app-all-project-tasks *ngIf="taskListTags?.kind === 'project'"-->
+                               <!--[project]="taskList" [tasks]="taskItems"-->
+                               <!--[projectTags]="taskListTags"></app-all-project-tasks>-->
+
+        <!--<app-all-todo-tasks *ngIf="!taskListTags.kind || taskListTags.kind === 'todo'"-->
+                            <!--[taskList]="taskList" [taskItems]="taskItems"-->
+                            <!--[taskListTags]="taskListTags"></app-all-todo-tasks>-->
+
+    </div>
+
+    <ng-template #noTasks>
+        <div class="row">
+            <div class="col-md-5">
+                <p>You don't have any task. Go ahead and create one.</p>
+            </div>
+        </div>
+    </ng-template>
+</div>

@@ -15,6 +15,7 @@ import { TaskItemSummaryComponent } from './components/task-item-summary/task-it
 import { AllTodoTasksComponent } from './components/all-todo-tasks/all-todo-tasks.component';
 import { TodoTaskItemCardComponent } from './components/todo-task-item-card/todo-task-item-card.component';
 import { AddTodoTaskItemComponent } from './components/add-todo-task-item/add-todo-task-item.component';
+import { NewTaskItemComponent } from './components/new-task-item/new-task-item.component';
 
 @NgModule({
     imports: [
@@ -28,6 +29,7 @@ import { AddTodoTaskItemComponent } from './components/add-todo-task-item/add-to
     declarations: [
         AllTaskItemsComponent,
         TaskItemComponent,
+        NewTaskItemComponent,
         AllProjectTasksComponent,
         ProjectTaskItemCardComponent,
         EditProjectTaskItemComponent,
@@ -38,6 +40,7 @@ import { AddTodoTaskItemComponent } from './components/add-todo-task-item/add-to
     ],
     exports: [
         AllTaskItemsComponent,
+        NewTaskItemComponent,
         TaskItemComponent,
     ]
 })

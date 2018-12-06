@@ -16,9 +16,18 @@ export class TaskListService {
     }
 
     getTaskList(userId: string, listId: string): Observable<TaskList> {
-        return this.getAllTaskLists(userId) // ToDo query a single list by id
+        return this._http
+            .post('/zv/GraphQL', {
+                query: `query GetSingleTaskList($u:String!,$l:String!) { user(userId: $u) {
+                    list(listId: $l) { id title description owner collaborators tags createdAt updatedAt }
+                } }`,
+                variables: {u: userId, l: listId}
+            })
             .pipe(
-                map(allLists => allLists.find(l => l.id === listId))
+                map<any, TaskList>(resp => {
+                    ensureSuccessResponse(resp);
+                    return <TaskList>resp.data.user.list;
+                })
             );
     }
 

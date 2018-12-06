@@ -5,12 +5,48 @@ import { map } from 'rxjs/operators';
 import { testTaskItems } from '../test-data';
 import { TaskItem } from '../models/task-item';
 import { TaskItemTags } from '../models/task-item-tags';
+import { Observable } from 'rxjs/internal/Observable';
+import { ensureSuccessResponse } from '../helpers/ensure-success-response';
+import { TaskItemInput } from '../../task-item/models/task-item-input';
 
 @Injectable()
 export class TaskItemService {
     constructor(
         private _http: HttpClient
     ) {
+    }
+
+    getAllTaskItems(userId: string, listId: string): Observable<TaskItem[]> {
+        return this._http
+            .post('/zv/GraphQL', {
+                query: `query GetAllTaskItems($u:String!, $l:String!) {
+                    user(userId: $u) {
+                        list(listId: $l) { tasks { id title description due tags createdAt } }
+                    }
+                }`,
+                variables: {u: userId, l: listId}
+            })
+            .pipe(
+                map<any, TaskItem[]>(resp => {
+                    ensureSuccessResponse(resp);
+                    return <TaskItem[]>resp.data.user.list.tasks;
+                })
+            );
+    }
+
+    createTask(ownerId: string, listId: string, input: TaskItemInput): Observable<TaskItem> {
+        return this._http
+            .post('/zv/GraphQL', {
+                query: `mutation createTask($u:String!,$l:String!,$t:TaskInput!) {
+                    createTask(ownerId:$u,listId:$l,task:$t) { id title description due tags createdAt } }`,
+                variables: {u: ownerId, l: listId, t: input}
+            })
+            .pipe(
+                map<any, TaskItem>(resp => {
+                    ensureSuccessResponse(resp);
+                    return <TaskItem>resp.data.createTask;
+                })
+            );
     }
 
     getTaskItem(userId: string, listId: string, taskId: string) {
@@ -25,17 +61,6 @@ export class TaskItemService {
             .filter(task => task.id === id)
             .map(task => <TaskItem>Object.assign({}, task))
         );
-    }
-
-    getAllTaskItems(userId: string, listId: string) {
-        return from([
-            testTaskItems
-                .filter(task => task.list === listId)
-                .reduce<TaskItem[]>((prev: TaskItem[], curr: TaskItem) => {
-                    prev.push(Object.assign({}, curr));
-                    return prev;
-                }, [])
-        ]);
     }
 
     update(taskUpdates: TaskItem) {
@@ -53,11 +78,5 @@ export class TaskItemService {
             actualTask.tags.push(`_stage:${tagUpdates.stage}`);
         }
         return from([Object.assign({}, actualTask)]);
-    }
-}
-
-function throwIfHasErrors(response: any) {
-    if (response.errors && response.errors.length) {
-        throw new Error(response.errors[0].message);
     }
 }

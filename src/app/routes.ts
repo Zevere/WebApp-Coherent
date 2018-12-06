@@ -9,8 +9,8 @@ import { AllTaskListsComponent } from './modules/task-list/components/all-task-l
 import { TaskListComponent } from './modules/task-list/components/task-list/task-list.component';
 import { UserProfileComponent } from './modules/profile/components/user-profile/user-profile.component';
 import { AllTaskItemsComponent } from './modules/task-item/components/all-task-items/all-task-items.component';
-import { TaskItemComponent } from './modules/task-item/components/task-item/task-item.component';
 import { NewTaskListComponent } from './modules/task-list/components/new-task-list/new-task-list.component';
+import { NewTaskItemComponent } from './modules/task-item/components/new-task-item/new-task-item.component';
 
 export function getRoutes(): Routes {
     return [
@@ -32,7 +32,7 @@ export function getRoutes(): Routes {
                                 {
                                     path: 'tasks', children: [
                                         {path: '', component: AllTaskItemsComponent, pathMatch: 'full'},
-                                        {path: ':taskId', component: TaskItemComponent},
+                                        {path: 'new', component: NewTaskItemComponent},
                                     ],
                                 },
                             ],

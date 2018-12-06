@@ -28,8 +28,7 @@ export class AllTaskItemsComponent implements OnInit {
             .subscribe(p => {
                     const userId = p.get('userId');
                     const listId = p.get('listId');
-                    this.loadTaskList(userId, listId);
-                    this.loadAllTaskItems(userId, listId);
+                    this.loadTaskItems(userId, listId);
                 },
                 e => {
                     console.warn(e);
@@ -37,21 +36,7 @@ export class AllTaskItemsComponent implements OnInit {
             );
     }
 
-    loadTaskList(userId: string, listId: string) {
-        this._taskListService
-            .getTaskList(userId, listId)
-            .subscribe(
-                list => {
-                    this.taskList = list;
-                    this.taskListTags = new TaskListTags(list.tags);
-                },
-                e => {
-                    console.warn(e);
-                }
-            );
-    }
-
-    loadAllTaskItems(userId: string, listId: string) {
+    loadTaskItems(userId: string, listId: string) {
         this._taskItemService
             .getAllTaskItems(userId, listId)
             .subscribe(
