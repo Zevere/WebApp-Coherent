@@ -1,22 +1,20 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-1">
+        <div class="col-md-auto">
+            <button role="link" class="btn btn-outline-dark" (click)="navigateBackToList()">
+                <i class="fa fa-arrow-left"></i> Back to List
+            </button>
+            &nbsp;&nbsp;
             <a class="btn btn-secondary" routerLink="new">
                 <i class="fa fa-plus"></i> Add New Task
             </a>
         </div>
     </div>
 
+    <div class="row my-2"></div>
+
     <div class="row" *ngIf="taskItems?.length; else noTasks">
-
-        <!--<app-all-project-tasks *ngIf="taskListTags?.kind === 'project'"-->
-                               <!--[project]="taskList" [tasks]="taskItems"-->
-                               <!--[projectTags]="taskListTags"></app-all-project-tasks>-->
-
-        <!--<app-all-todo-tasks *ngIf="!taskListTags.kind || taskListTags.kind === 'todo'"-->
-                            <!--[taskList]="taskList" [taskItems]="taskItems"-->
-                            <!--[taskListTags]="taskListTags"></app-all-todo-tasks>-->
-
+        <app-all-todo-tasks [taskItems]="taskItems"></app-all-todo-tasks>
     </div>
 
     <ng-template #noTasks>

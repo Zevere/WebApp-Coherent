@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TaskListService } from '../../../shared/services/task-list.service';
 import { TaskItem } from '../../../shared/models/task-item';
 import { TaskItemService } from '../../../shared/services/task-item.service';
 import { TaskList } from '../../../shared/models/task-list';
-import { TaskListTags } from '../../../shared/models/task-list-tags';
 
 @Component({
     selector: 'app-all-task-items',
@@ -13,11 +12,11 @@ import { TaskListTags } from '../../../shared/models/task-list-tags';
 export class AllTaskItemsComponent implements OnInit {
     taskItems: TaskItem[];
     taskList: TaskList;
-    taskListTags: TaskListTags;
 
     constructor(
         private _taskListService: TaskListService,
         private _taskItemService: TaskItemService,
+        private _router: Router,
         private _route: ActivatedRoute
     ) {
     }
@@ -47,5 +46,9 @@ export class AllTaskItemsComponent implements OnInit {
                     console.warn(e);
                 }
             );
+    }
+
+    navigateBackToList() {
+        this._router.navigate(['../'], {relativeTo: this._route});
     }
 }
