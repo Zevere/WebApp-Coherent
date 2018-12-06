@@ -4,10 +4,6 @@ Zevere web app powered by Angular 6
 
 ## Getting Started
 
-1. Run Zevere's GraphQL web API locally in a Docker container
-    ```sh
-    docker run --detach --publish 5000:80 zevere/webapi-borzoo:edge
-    ```
 1. Restore dependencies
     ```sh
     npm install
