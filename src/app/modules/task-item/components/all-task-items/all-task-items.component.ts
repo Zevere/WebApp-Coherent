@@ -49,6 +49,6 @@ export class AllTaskItemsComponent implements OnInit {
     }
 
     navigateBackToList() {
-        this._router.navigate(['../'], {relativeTo: this._route});
+        this._router.navigate(['..'], {relativeTo: this._route.parent});
     }
 }
