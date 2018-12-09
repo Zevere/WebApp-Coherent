@@ -18,7 +18,8 @@
             <div class="card">
                 <ul *ngFor="let t of taskItems" class="list-group list-group-flush">
                     <li class="list-group-item">
-                        <app-task-item-card [task]="t"></app-task-item-card>
+                        <app-task-item-card [task]="t" [isOwner]="isOwner"
+                                            (delete)="deleteTask(t.id)"></app-task-item-card>
                     </li>
                 </ul>
             </div>

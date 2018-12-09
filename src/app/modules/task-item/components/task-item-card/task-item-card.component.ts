@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { TaskItemService } from '../../../shared/services/task-item.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TaskItem } from '../../../shared/models/task-item';
 
 @Component({
@@ -7,9 +6,13 @@ import { TaskItem } from '../../../shared/models/task-item';
     templateUrl: './task-item-card.component.html'
 })
 export class TaskItemCardComponent {
+    @Input() ownerId: string;
+    @Input() listId: string;
     @Input() task: TaskItem;
+    @Input() isOwner: boolean;
+    @Output() delete = new EventEmitter();
 
-    public get tooltip() {
+    get tooltip() {
         let value = '';
         if (this.task) {
             value = `Task "${this.task.id}"\n was created on ${this.task.createdAt}.`;
@@ -17,8 +20,7 @@ export class TaskItemCardComponent {
         return value;
     }
 
-    constructor(
-        private _taskItemService: TaskItemService
-    ) {
+    deleteTask() {
+        this.delete.emit();
     }
 }

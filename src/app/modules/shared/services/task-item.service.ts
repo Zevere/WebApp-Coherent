@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { from } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { testTaskItems } from '../test-data';
 import { TaskItem } from '../models/task-item';
-import { TaskItemTags } from '../models/task-item-tags';
 import { Observable } from 'rxjs/internal/Observable';
 import { ensureSuccessResponse } from '../helpers/ensure-success-response';
 import { TaskItemInput } from '../../task-item/models/task-item-input';
@@ -37,7 +34,7 @@ export class TaskItemService {
     createTask(ownerId: string, listId: string, input: TaskItemInput): Observable<TaskItem> {
         return this._http
             .post('/zv/GraphQL', {
-                query: `mutation createTask($u:String!,$l:String!,$t:TaskInput!) {
+                query: `mutation CreateTask($u:String!,$l:String!,$t:TaskInput!) {
                     createTask(ownerId:$u,listId:$l,task:$t) { id title description due tags createdAt } }`,
                 variables: {u: ownerId, l: listId, t: input}
             })
@@ -49,34 +46,16 @@ export class TaskItemService {
             );
     }
 
-    getTaskItem(userId: string, listId: string, taskId: string) {
-        return from(testTaskItems.filter(task => task.id === taskId && task.list === listId))
+    deleteTask(ownerId: string, listId: string, taskId: string): Observable<void> {
+        return this._http
+            .post('/zv/GraphQL', {
+                query: `mutation DeleteTask($u:String!,$l:String!,$t:String!) { deleteTask(ownerId:$u,listId:$l,taskId:$t) }`,
+                variables: {u: ownerId, l: listId, t: taskId}
+            })
             .pipe(
-                map(task => <TaskItem>Object.assign({}, task))
+                map<any, void>(resp => {
+                    ensureSuccessResponse(resp);
+                })
             );
-    }
-
-    get(id: string) {
-        return from(testTaskItems
-            .filter(task => task.id === id)
-            .map(task => <TaskItem>Object.assign({}, task))
-        );
-    }
-
-    update(taskUpdates: TaskItem) {
-        const actualTask = testTaskItems.filter(t => t.id === taskUpdates.id)[0];
-        const actualTags = new TaskItemTags(actualTask.tags);
-
-        actualTask.title = taskUpdates.title;
-        actualTask.description = taskUpdates.description;
-        actualTask.updatedAt = new Date();
-
-        const tagUpdates = new TaskItemTags(taskUpdates.tags || []);
-        actualTask.tags = actualTask.tags || [];
-        if (actualTags.stage !== tagUpdates.stage) {
-            actualTask.tags = actualTask.tags.filter((tag: string) => !tag.startsWith('_stage:'));
-            actualTask.tags.push(`_stage:${tagUpdates.stage}`);
-        }
-        return from([Object.assign({}, actualTask)]);
     }
 }

@@ -1,6 +1,8 @@
 <dl>
     <dt>
-        <button role="button" class="btn btn-danger btn-sm rounded-circle pull-right" ngbTooltip="Delete this task">
+        <button *ngIf="isOwner" role="button" class="btn btn-danger btn-sm rounded-circle pull-right"
+                ngbTooltip="Delete this task"
+                (click)="deleteTask()">
             <i class="fa fa-remove"></i>
         </button>
         <p [ngbTooltip]="tooltip">

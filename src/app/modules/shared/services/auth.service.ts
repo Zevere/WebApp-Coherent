@@ -3,9 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { EventEmitter } from 'events';
 import { fromEvent } from 'rxjs';
 import { map } from 'rxjs/operators';
-
 import { User } from '../models/user';
-import { testUsers } from '../test-data';
 import { LoginInput } from '../../main/models/login-input';
 import { ensureSuccessResponse } from '../helpers/ensure-success-response';
 
@@ -23,7 +21,6 @@ export class AuthService {
     constructor(
         private _http: HttpClient
     ) {
-        this._currentUser = testUsers[1]; // ToDo remove
     }
 
     watchLogin() {
@@ -43,7 +40,7 @@ export class AuthService {
             .pipe(
                 map<any, void>(resp => {
                     ensureSuccessResponse(resp);
-                    this._currentUser = <User> resp.data.login;
+                    this._currentUser = <User>resp.data.login;
                     this._authEventEmitter.emit('login', this.user);
                 })
             );

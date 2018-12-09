@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { from } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TaskList } from '../models/task-list';
-import { testTaskLists } from '../test-data';
 import { ensureSuccessResponse } from '../helpers/ensure-success-response';
 import { TaskListInput } from '../../task-list/models/task-list-input';
 import { Observable } from 'rxjs/internal/Observable';
@@ -29,17 +27,6 @@ export class TaskListService {
                     return <TaskList>resp.data.user.list;
                 })
             );
-    }
-
-    addCollaborator(listId: string, collaboratorId: string) {
-        const list = testTaskLists.filter(l => l.id === listId)[0];
-
-        if (!list.collaborators) {
-            list.collaborators = [];
-        }
-        list.collaborators.push(collaboratorId);
-
-        return from([list]);
     }
 
     getAllTaskLists(userId: string): Observable<TaskList[]> {
