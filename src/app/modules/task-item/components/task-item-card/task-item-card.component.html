@@ -1,0 +1,11 @@
+<dl>
+    <dt>
+        <button role="button" class="btn btn-danger btn-sm rounded-circle pull-right" ngbTooltip="Delete this task">
+            <i class="fa fa-remove"></i>
+        </button>
+        <p [ngbTooltip]="tooltip">
+            {{ task.title }}
+        </p>
+    </dt>
+    <dd>{{ task.description }}</dd>
+</dl>

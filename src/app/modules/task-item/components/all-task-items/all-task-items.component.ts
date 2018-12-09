@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TaskListService } from '../../../shared/services/task-list.service';
 import { TaskItem } from '../../../shared/models/task-item';
 import { TaskItemService } from '../../../shared/services/task-item.service';
-import { TaskList } from '../../../shared/models/task-list';
 
 @Component({
     selector: 'app-all-task-items',
@@ -11,7 +10,6 @@ import { TaskList } from '../../../shared/models/task-list';
 })
 export class AllTaskItemsComponent implements OnInit {
     taskItems: TaskItem[];
-    taskList: TaskList;
 
     constructor(
         private _taskListService: TaskListService,

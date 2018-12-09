@@ -4,7 +4,7 @@
             <button role="link" class="btn btn-outline-dark" (click)="navigateBackToList()">
                 <i class="fa fa-arrow-left"></i> Back to List
             </button>
-            &nbsp;&nbsp;
+            &nbsp;
             <a class="btn btn-secondary" routerLink="new">
                 <i class="fa fa-plus"></i> Add New Task
             </a>
@@ -14,7 +14,15 @@
     <div class="row my-2"></div>
 
     <div class="row" *ngIf="taskItems?.length; else noTasks">
-        <app-all-todo-tasks [taskItems]="taskItems"></app-all-todo-tasks>
+        <div class="col-md-12">
+            <div class="card">
+                <ul *ngFor="let t of taskItems" class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <app-task-item-card [task]="t"></app-task-item-card>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 
     <ng-template #noTasks>
