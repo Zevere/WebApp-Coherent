@@ -12,6 +12,9 @@ import { AllTaskItemsComponent } from './modules/task-item/components/all-task-i
 import { NewTaskListComponent } from './modules/task-list/components/new-task-list/new-task-list.component';
 import { NewTaskItemComponent } from './modules/task-item/components/new-task-item/new-task-item.component';
 
+/**
+ * Creates application routes
+ */
 export function getRoutes(): Routes {
     return [
         {path: 'login', component: LoginComponent},

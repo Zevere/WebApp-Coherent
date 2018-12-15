@@ -13,6 +13,9 @@ export class TaskItemService {
     ) {
     }
 
+    /**
+     * Gets all the tasks in a list
+     */
     getAllTaskItems(userId: string, listId: string): Observable<TaskItem[]> {
         return this._http
             .post('/zv/GraphQL', {
@@ -31,6 +34,9 @@ export class TaskItemService {
             );
     }
 
+    /**
+     * Creates a new task
+     */
     createTask(ownerId: string, listId: string, input: TaskItemInput): Observable<TaskItem> {
         return this._http
             .post('/zv/GraphQL', {
@@ -46,6 +52,9 @@ export class TaskItemService {
             );
     }
 
+    /**
+     * Deletes a single task
+     */
     deleteTask(ownerId: string, listId: string, taskId: string): Observable<void> {
         return this._http
             .post('/zv/GraphQL', {

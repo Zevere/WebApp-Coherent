@@ -4,6 +4,9 @@ import { AuthService } from './services/auth.service';
 import { TaskListService } from './services/task-list.service';
 import { TaskItemService } from './services/task-item.service';
 
+/**
+ * Shared module containing the common services and utility functions
+ */
 @NgModule({
     imports: [
         CommonModule

@@ -7,9 +7,15 @@ import { User } from '../models/user';
 import { LoginInput } from '../../main/models/login-input';
 import { ensureSuccessResponse } from '../helpers/ensure-success-response';
 
+/**
+ * User authentication service
+ */
 @Injectable()
 export class AuthService {
 
+    /**
+     * Current application user
+     */
     get user(): User {
         return this._currentUser;
     }
@@ -23,14 +29,23 @@ export class AuthService {
     ) {
     }
 
+    /**
+     * Generates an observable to indicate user login
+     */
     watchLogin() {
         return fromEvent<User>(this._authEventEmitter, 'login');
     }
 
+    /**
+     * Generates an observable to indicate user logout
+     */
     watchLogout() {
         return fromEvent(this._authEventEmitter, 'logout');
     }
 
+    /**
+     * Makes a login request
+     */
     login(login: LoginInput) {
         return this._http
             .post('/zv/GraphQL', {
@@ -46,6 +61,9 @@ export class AuthService {
             );
     }
 
+    /**
+     * Logs user out
+     */
     logout() {
         this._authEventEmitter.emit('logout');
         this._currentUser = null;

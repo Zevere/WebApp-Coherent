@@ -1,3 +1,6 @@
+/**
+ * Gets a value for a specific tag
+ */
 export function getTagValue(tags: string[], name: string) {
     if (!tags || !tags.length) {
         return null;
