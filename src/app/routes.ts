@@ -7,7 +7,7 @@ import { HomeComponent } from './modules/main/components/home/home.component';
 import { NotFoundComponent } from './modules/main/components/not-found/not-found.component';
 import { AllTaskListsComponent } from './modules/task-list/components/all-task-lists/all-task-lists.component';
 import { TaskListComponent } from './modules/task-list/components/task-list/task-list.component';
-import { UserProfileComponent } from './modules/profile/components/user-profile/user-profile.component';
+import { UserProfileComponent } from './modules/main/components/user-profile/user-profile.component';
 import { AllTaskItemsComponent } from './modules/task-item/components/all-task-items/all-task-items.component';
 import { NewTaskListComponent } from './modules/task-list/components/new-task-list/new-task-list.component';
 import { NewTaskItemComponent } from './modules/task-item/components/new-task-item/new-task-item.component';

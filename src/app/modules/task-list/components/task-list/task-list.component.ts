@@ -37,7 +37,7 @@ export class TaskListComponent implements OnInit {
             .deleteList(this.taskList.owner, this.taskList.id)
             .subscribe(
                 () => {
-                    this._router.navigate(['..'], {relativeTo: this._route});
+                    this._router.navigate(['..'], {relativeTo: this._route.parent});
                 },
                 e => {
                     console.warn(e);

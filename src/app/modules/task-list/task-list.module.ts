@@ -8,7 +8,6 @@ import { TaskListCardComponent } from './components/task-list-card/task-list-car
 import { AllTaskListsComponent } from './components/all-task-lists/all-task-lists.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { SharedModule } from '../shared/shared.module';
-import { CommentModule } from '../comment/comment.module';
 import { TaskListSummaryComponent } from './components/task-list-summary/task-list-summary.component';
 import { NewTaskListComponent } from './components/new-task-list/new-task-list.component';
 
@@ -20,7 +19,6 @@ import { NewTaskListComponent } from './components/new-task-list/new-task-list.c
         ReactiveFormsModule,
         NgbModule,
         SharedModule,
-        CommentModule
     ],
     declarations: [
         TaskListCardComponent,

@@ -13,6 +13,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RegistrationService } from './services/registration.service';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
     imports: [
@@ -29,6 +30,7 @@ import { RegistrationService } from './services/registration.service';
         RegisterComponent,
         NotFoundComponent,
         DashboardComponent,
+        UserProfileComponent,
     ],
     providers: [
         AuthService,
