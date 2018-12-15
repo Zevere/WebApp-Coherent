@@ -20,6 +20,9 @@ export class AllTaskListsComponent implements OnInit {
         this.loadAllTaskLists();
     }
 
+    /**
+     * Get all the task lists for the current user
+     */
     loadAllTaskLists() {
         this._tasksListsService
             .getAllTaskLists(this._authService.user.id)

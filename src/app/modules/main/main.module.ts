@@ -28,7 +28,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
         LoginComponent,
         RegisterComponent,
         NotFoundComponent,
-        UserProfileComponent,
+            UserProfileComponent,
     ],
     providers: [
         AuthService,

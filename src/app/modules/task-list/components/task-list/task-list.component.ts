@@ -32,6 +32,9 @@ export class TaskListComponent implements OnInit {
             );
     }
 
+    /**
+     * Makes a task list deletion request for the current list
+     */
     delete() {
         this._taskListService
             .deleteList(this.taskList.owner, this.taskList.id)
@@ -45,6 +48,9 @@ export class TaskListComponent implements OnInit {
             );
     }
 
+    /**
+     * Loads the task list based on the route parameters
+     */
     private getTaskList(userId: string, listId: string) {
         this._taskListService
             .getTaskList(userId, listId)

@@ -27,6 +27,9 @@ export class NewTaskListComponent {
         });
     }
 
+    /**
+     * Makes a task list creation request
+     */
     createNewList() {
         this.isSending = true;
 

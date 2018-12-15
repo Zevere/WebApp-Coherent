@@ -15,8 +15,6 @@ export class TaskListCardComponent implements OnInit {
     }
 
     private parseTags() {
-        // ToDo iterate array once
-
         if (this.taskList.tags && this.taskList.tags.length) {
             this.tags = this.taskList
                 .tags
