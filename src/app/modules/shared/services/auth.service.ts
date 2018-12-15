@@ -4,7 +4,7 @@ import { EventEmitter } from 'events';
 import { fromEvent } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../models/user';
-import { LoginInput } from '../../main/models/login-input';
+import { LoginInput } from '../models/login-input';
 import { ensureSuccessResponse } from '../helpers/ensure-success-response';
 
 /**

@@ -4,6 +4,9 @@ import { UserInput } from '../models/user-input';
 import { User } from '../../shared/models/user';
 import { map } from 'rxjs/operators';
 
+/**
+ * User registration service
+ */
 @Injectable()
 export class RegistrationService {
 
@@ -12,6 +15,9 @@ export class RegistrationService {
     ) {
     }
 
+    /**
+     * Creates a new user account
+     */
     registerUser(input: UserInput) {
         return this._http
             .post('/zv/GraphQL', {

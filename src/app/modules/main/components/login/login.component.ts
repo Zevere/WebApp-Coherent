@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { getErrorMessage } from '../../../shared/helpers/get-error-message';
 import { AuthService } from '../../../shared/services/auth.service';
-import { LoginInput } from '../../models/login-input';
 
 @Component({
     selector: 'app-login',
@@ -39,13 +38,19 @@ export class LoginComponent implements OnInit {
             });
     }
 
+    /**
+     * Makes login request
+     */
     login() {
         this.isSending = true;
+        const newModel: any = Object.assign({}, this.loginForm.value);
+
         this._authService
-            .login(this.getModel())
+            .login(newModel)
             .subscribe(
                 () => {
                     this.redirectToUri();
+                    this.isSending = false;
                 },
                 e => {
                     this.error = getErrorMessage(e);
@@ -54,11 +59,9 @@ export class LoginComponent implements OnInit {
             );
     }
 
-    private getModel(): LoginInput {
-        const newModel: any = Object.assign({}, this.loginForm.value);
-        return newModel;
-    }
-
+    /**
+     * Redirects the user after login to home view or the path of "redirect_uri" query parameter
+     */
     private redirectToUri() {
         let uri = this._redirectUri;
         if (uri) {

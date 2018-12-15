@@ -27,6 +27,9 @@ export class UserProfileComponent implements AfterViewInit {
         });
     }
 
+    /**
+     * Appends Telegram Login Widget script to the page
+     */
     ngAfterViewInit() {
         const botName = environment.tgBot;
         const redirectUri = environment.tgRedirectUrl + `?zv-user=${this._authService.user.id}`;
@@ -40,7 +43,5 @@ export class UserProfileComponent implements AfterViewInit {
         script.setAttribute('data-auth-url', redirectUri);
         script.setAttribute('data-request-access', 'write');
         this.tgWidgetEl.nativeElement.appendChild(script);
-
-        // ToDo add event listener to handle errors in loading the widget
     }
 }

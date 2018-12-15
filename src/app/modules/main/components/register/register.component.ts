@@ -35,7 +35,6 @@ export class RegisterComponent implements OnInit {
                 pass: ['', [Validators.required, Validators.minLength(6)]],
                 passConfirm: ['', Validators.required]
             }, {validator: areEqual}),
-            // members: ['', [Validators.required, Validators.minLength(3)]],
         });
     }
 
@@ -48,6 +47,9 @@ export class RegisterComponent implements OnInit {
             });
     }
 
+    /**
+     * Makes user registration request
+     */
     registerUser() {
         this.isSending = true;
 
@@ -71,6 +73,9 @@ export class RegisterComponent implements OnInit {
         return newModel;
     }
 
+    /**
+     * Makes login request after successful registration
+     */
     private logUserIn(user: string, pass: string) {
         this._authService
             .login({username: user, passphrase: pass})
@@ -86,6 +91,9 @@ export class RegisterComponent implements OnInit {
             );
     }
 
+    /**
+     * Redirects the user after registration to home view or the path of "redirect_uri" query parameter
+     */
     private redirectToUri() {
         let uri = this._redirectUri;
         if (uri) {

@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 
 import { LoginComponent } from './modules/main/components/login/login.component';
 import { RegisterComponent } from './modules/main/components/register/register.component';
-import { DashboardComponent } from './modules/main/components/dashboard/dashboard.component';
 import { HomeComponent } from './modules/main/components/home/home.component';
 import { NotFoundComponent } from './modules/main/components/not-found/not-found.component';
 import { AllTaskListsComponent } from './modules/task-list/components/all-task-lists/all-task-lists.component';
@@ -20,7 +19,6 @@ export function getRoutes(): Routes {
         {path: 'login', component: LoginComponent},
         {path: 'register', component: RegisterComponent},
         {path: 'home', component: HomeComponent},
-        {path: 'dashboard', component: DashboardComponent},
         {path: 'profile', component: UserProfileComponent},
         {
             path: 'users/:userId', children: [
